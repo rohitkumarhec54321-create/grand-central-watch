@@ -1,0 +1,9 @@
+{
+  "source": "claud video.mp4",
+  "duration": 26.12,
+  "totalFrames": 131,
+  "fps": 5,
+  "format": "webp",
+  "desktopWidth": 720,
+  "mobileWidth": 480
+}
