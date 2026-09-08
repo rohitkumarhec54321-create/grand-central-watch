@@ -1,4 +1,5 @@
 import ScrollWatchSequence from '@/components/ScrollWatchSequence';
+import WatchDetails from '@/components/WatchDetails';
 
 export default function Home() {
   return (
@@ -13,9 +14,10 @@ export default function Home() {
       <section id="simple-at-first-glance" className="closing-section">
         <span className="technical-label">PRECISION, FROM THE INSIDE OUT</span>
         <h2>Simple at first glance.<br /><em>Extraordinary within.</em></h2>
-        <p>Every detail has a purpose. Every timepiece, a story.<br />Discover the care behind the craft at Grand Central Watch.</p>
-        <a href="https://centralwatch.com/">Explore Grand Central Watch <span>↗</span></a>
+        <p>A case protects. A crystal reveals. A movement gives it life.<br />Explore the layers, surfaces, and mechanisms that make a watch more than its face.</p>
+        <a href="#case-assembly">Explore the details <span>↓</span></a>
       </section>
+      <WatchDetails />
       <footer className="site-footer"><span>GRAND CENTRAL WATCH</span><span>NEW YORK · SINCE 1952</span><a href="#watch-sequence">Back to the movement ↑</a></footer>
     </main>
   );

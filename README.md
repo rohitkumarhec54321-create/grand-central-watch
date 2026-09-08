@@ -90,3 +90,13 @@ The script samples evenly across the full duration, selects 120–150 frames nea
 ## Verification
 
 Production build and TypeScript checking are included in the delivery validation. Asset counts, decoding, and chapter boundaries are checked separately. Browser interaction and device-performance testing have not been performed.
+
+## Expanded visual field notes
+
+`components/WatchDetails.tsx` and its scoped `WatchDetails.css` add four editorial sections after “Simple at first glance”: carbon-lume assembly, movement anatomy, Longines exterior studies, and separate IWC/Hublot design references. All 16 supplied images appear in the page with descriptive captions and alt text. Every image opens a full-screen accessible dialog with previous/next controls, left/right arrow navigation, Escape dismissal, and focus restoration.
+
+The image viewer uses `components/ui/dialog.tsx`, `components/ui/button.tsx`, and `lucide-react`, in addition to the shared UI dependencies. Copy `public/watch-gallery/` when integrating the expanded sections. A source-to-asset mapping is recorded in `public/watch-gallery/manifest.json`. `scripts/prepare-gallery.py` produces 900px responsive previews and full images up to 1920px without cropping their compositions.
+
+The 32 optimized gallery WebPs total approximately 3.8 MiB; each visitor loads the appropriate responsive size, with full images requested when needed. Gallery images are lazy-loaded and have intrinsic dimensions to preserve layout. The primary 131-frame Longines interaction is unchanged.
+
+The educational copy describes general mechanical principles, with an on-page link to Longines’ explanation of mechanical movements. Supplied concept diagrams and their embedded annotations are not presented as verified model specifications or service instructions.
