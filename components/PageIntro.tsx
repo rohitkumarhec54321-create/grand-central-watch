@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function PageIntro({label,title,em,children}:{label:string;title:string;em:string;children?:React.ReactNode}){return <section className="page-intro"><Link className="breadcrumb" href="/">Grand Central Watch <span>/</span> {label}</Link><div data-editorial-reveal><span className="atelier-label">{label}</span><h1>{title}<br/><em>{em}</em></h1>{children&&<p>{children}</p>}</div></section>}

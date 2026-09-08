@@ -1,6 +1,8 @@
+/* eslint-disable next/no-img-element -- Images are pre-optimized WebP assets for the static export. */
 'use client';
 
 import { useRef, useState } from 'react';
+import Link from 'next/link';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } from './ui/dialog';
 import './WatchDetails.css';
 
@@ -73,7 +75,7 @@ export default function WatchDetails() {
       <div className="iwc-layout">{photo(6, 'iwc-portrait')}<div className="iwc-context"><span className="detail-kicker">IWC / PILOT-STYLE CHRONOGRAPH</span><h3>Built around<br />the information.</h3><p>The olive dial balances several displays within a clear circular frame. White markings establish contrast; the textile strap carries the same color beyond the case.</p><dl><div><dt>At the center</dt><dd>Broad hands, three subdials, and a day-date window.</dd></div><div><dt>At the edge</dt><dd>A crown and two pushers change the side profile.</dd></div><div><dt>In the round</dt><dd>Orbit and reference sheets reveal the case and strap from multiple angles.</dd></div></dl></div></div>
       <div className="detail-grid">{photo(9)}{photo(10)}</div>
       <div className="hublot-layout"><div><span className="detail-kicker">HUBLOT / SKELETON-STYLE CHRONOGRAPH</span><h3>The mechanism<br />joins the face.</h3><p>Here, the visible mechanism becomes part of the dial’s composition. Repeated fasteners, layered surfaces, and strong contrast give the exterior a distinctly architectural character.</p><p className="detail-note">Inspect the side controls, caseback, and clasp in the detail panels.</p></div>{photo(11)}</div>
-      <div className="detail-end"><span className="detail-kicker">A CONTINUING APPRECIATION</span><p>The more you look,<br /><em>the more you see.</em></p><a href="#watch-sequence">Return to the scroll experience <span>↑</span></a></div>
+      <div className="detail-end"><span className="detail-kicker">A CONTINUING APPRECIATION</span><p>The more you look,<br /><em>the more you see.</em></p><Link href="/#watch-sequence">Return to the scroll experience <span>↑</span></Link></div>
     </section>
 
     <Dialog open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }}>

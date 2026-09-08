@@ -1,6 +1,6 @@
 # Grand Central Watch — ScrollWatchSequence
 
-Next.js 16 App Router, TypeScript, Tailwind CSS 4, GSAP ScrollTrigger, and Lenis. A standalone integration demo is in `app/page.tsx`; the live centralwatch.com website was not modified.
+Next.js 16 App Router, TypeScript, Tailwind CSS 4, GSAP ScrollTrigger, and Lenis. The expanded luxury website includes eight routes. The live centralwatch.com website was not modified; transactions continue through its real inquiry, shop, account, and contact destinations.
 
 ## Run
 
@@ -93,7 +93,7 @@ Production build and TypeScript checking are included in the delivery validation
 
 ## Expanded visual field notes
 
-`components/WatchDetails.tsx` and its scoped `WatchDetails.css` add four editorial sections after “Simple at first glance”: carbon-lume assembly, movement anatomy, Longines exterior studies, and separate IWC/Hublot design references. All 16 supplied images appear in the page with descriptive captions and alt text. Every image opens a full-screen accessible dialog with previous/next controls, left/right arrow navigation, Escape dismissal, and focus restoration.
+`components/WatchDetails.tsx` and its scoped `WatchDetails.css` add four editorial sections on `/craft`: carbon-lume assembly, movement anatomy, Longines exterior studies, and separate IWC/Hublot design references. All 16 supplied images appear on that page with descriptive captions and alt text. Every image opens a full-screen accessible dialog with previous/next controls, left/right arrow navigation, Escape dismissal, and focus restoration.
 
 The image viewer uses `components/ui/dialog.tsx`, `components/ui/button.tsx`, and `lucide-react`, in addition to the shared UI dependencies. Copy `public/watch-gallery/` when integrating the expanded sections. A source-to-asset mapping is recorded in `public/watch-gallery/manifest.json`. `scripts/prepare-gallery.py` produces 900px responsive previews and full images up to 1920px without cropping their compositions.
 
@@ -106,3 +106,15 @@ The educational copy describes general mechanical principles, with an on-page li
 The third version introduces a full studio hero, centered wordmark, Cormorant Garamond editorial typography, muted metallic labels, and an ivory/obsidian palette. Playfair Display remains the scroll section’s display face. The sequence canvas now uses a deliberate square studio frame capped at 720px, preventing the excessive enlargement and arbitrary cropping visible in the supplied screen recording. Chapter changes use a brief entrance dissolve with immediate removal of inactive captions, avoiding overlapping text during fast scrubbing.
 
 All 16 reference images remain available in asymmetric editorial compositions and the full-screen viewer. `components/EditorialMotion.tsx` provides restrained entrance animations through GSAP with reduced-motion support and cleanup. Include this file and the updated `app/layout.tsx`, `app/globals.css`, and both component stylesheets when using the complete redesigned demo.
+
+## Complete atelier expansion (September 9, 2026)
+
+Eight static routes: home, service/restoration, collection, our story, visit/contact, journal, client care, and craft. `CONTENT-SOURCES.md` maps the content to official sources and documents the dated 14-product snapshot. The native store retains full inventory, account, checkout, inquiry, and newsletter operations.
+
+The site includes a full-screen keyboard-accessible menu, site search, category filtering, combined brand/reference searches, price sorting, product inspection dialogs, a searchable 43-brand directory, grouped animated FAQs, a New York local clock, address copying with an error state, and the full client resource directory.
+
+Motion now spans hero staging, route entrance reveals, image masks and scale settles, service steps, statistic reveals, navigation entrances, hover inspection, product filtering entrances, accordion height transitions, links, and a global page-progress indicator. `EditorialMotion` owns a single Lenis provider. `WatchExperience` passes it to the independent sequence component to prevent competing smooth-scroll instances and synchronize chapter jumps. All motion respects reduced-motion settings.
+
+Fixed stalled-loading fallback (45-second maximum), asynchronous audio cancellation after leaving the section, external Lenis listener cleanup, short-viewport static fallback, mobile control positioning, and the gallery return link after its move to `/craft`. Body-size changes refresh scroll distances through ResizeObserver, including FAQ expansion and filtered catalog changes.
+
+Validation: production static build and TypeScript passed; scoped correctness/accessibility lint passed; `scripts/check-site.mjs` checks every generated internal page link and anchor, image path, all 16 studies, catalog search/category/sort/empty states, and address separation. `scripts/check-sequence.mjs` verifies all forward/reverse frame mappings and chapter boundaries. Browser interaction and physical-device performance testing remain unperformed.

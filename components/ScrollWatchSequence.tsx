@@ -1,4 +1,6 @@
+/* eslint-disable next/no-img-element -- Images are pre-optimized WebP assets for the static export. */
 'use client';
+/* eslint-disable jsx-a11y/media-has-caption -- This generated mechanical ticking contains no speech; its function is labeled on the toggle. */
 
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
@@ -60,6 +62,7 @@ export default function ScrollWatchSequence({
   const pageDot = useRef<HTMLDivElement>(null);
   const jump = useRef<(index: number) => void>(() => {});
   const audio = useRef<HTMLAudioElement>(null);
+  const audioRequest = useRef(0);
   const [mode, setMode] = useState<Mode>('loading');
   const [loaded, setLoaded] = useState(0);
   const [active, setActive] = useState(0);
@@ -67,10 +70,14 @@ export default function ScrollWatchSequence({
   const [sound, setSound] = useState(false);
   const [audioError, setAudioError] = useState(false);
   const titleId = useId();
-  const safeCount = Math.max(2, Math.floor(totalFrames));
+  const safeCount = Number.isFinite(totalFrames) ? Math.max(2, Math.floor(totalFrames)) : 131;
+  const safeScreens = Number.isFinite(scrollScreens) ? Math.max(.5, scrollScreens) : 5.5;
 
   useEffect(() => {
     const root = section.current, viewport = stage.current, surface = canvas.current;
+    const player = audio.current;
+    const soundRequest = audioRequest;
+    const updateScroll = () => ScrollTrigger.update();
     if (!root || !viewport || !surface) return;
     gsap.registerPlugin(ScrollTrigger);
     setMounted(true);
@@ -80,6 +87,7 @@ export default function ScrollWatchSequence({
     const abort = new AbortController();
     const images: CachedFrame[] = [];
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    const shortViewport = matchMedia('(max-height: 440px)');
     const device = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
     const constrained = (device.deviceMemory ?? 8) <= 2 || device.connection?.saveData;
     let disposed = false, isStatic = false, ready = false, loading = false;
@@ -88,6 +96,7 @@ export default function ScrollWatchSequence({
     let ownedLenis: Lenis | undefined;
     let trigger: ScrollTrigger | undefined;
     let visible = false;
+    let loadTimer: ReturnType<typeof setTimeout> | undefined;
     const context = surface.getContext('2d', { alpha: false });
     const mobile = matchMedia('(max-width: 767px)').matches;
     const directory = mobile ? mobileFramePath : framePath;
@@ -100,9 +109,9 @@ export default function ScrollWatchSequence({
     };
     const fallback = () => {
       if (disposed || isStatic) return;
-      isStatic = true; ready = false; abort.abort();
+      isStatic = true; ready = false; abort.abort(); clearTimeout(loadTimer);
       cancelAnimationFrame(pendingDraw); pendingDraw = 0;
-      cancelAnimationFrame(lenisRaf); ownedLenis?.destroy(); ownedLenis = undefined;
+      cancelAnimationFrame(lenisRaf); (lenisInstance ?? ownedLenis)?.off('scroll', updateScroll); ownedLenis?.destroy(); ownedLenis = undefined;
       trigger?.kill(); free(); setMode('static'); setActive(0); refresh();
     };
     const updateLabels = () => {
@@ -164,6 +173,8 @@ export default function ScrollWatchSequence({
     const load = async () => {
       if (loading || isStatic || disposed) return;
       loading = true;
+      // A broken connection must never leave the interface in an endless loading state.
+      loadTimer = setTimeout(fallback, 45000);
       try {
         // Six requests at a time, started only within one viewport of the section.
         // Every frame is decoded before scrubbing is enabled, so fast jumps never hit gaps.
@@ -173,11 +184,11 @@ export default function ScrollWatchSequence({
           if (disposed || isStatic) return;
           setLoaded(Math.min(safeCount, offset + 6));
         }
-        ready = true; setMode('ready'); requestDraw();
+        clearTimeout(loadTimer); ready = true; setMode('ready'); requestDraw();
       } catch { if (!disposed) fallback(); }
     };
 
-    if (forceStatic || motion.matches || constrained || !context || !chapters.length) fallback();
+    if (forceStatic || motion.matches || shortViewport.matches || constrained || !context || !chapters.length) fallback();
     else {
       if (smoothScroll && !lenisInstance) {
         ownedLenis = new Lenis({ lerp: 0.12, smoothWheel: true, autoRaf: false });
@@ -188,7 +199,7 @@ export default function ScrollWatchSequence({
         lenisRaf = requestAnimationFrame(tick);
       }
       const scroll = lenisInstance ?? ownedLenis;
-      scroll?.on('scroll', ScrollTrigger.update);
+      scroll?.on('scroll', updateScroll);
       trigger = ScrollTrigger.create({
         trigger: root, start: 'top top', end: () => `+=${Math.max(1, root.offsetHeight - viewport.offsetHeight)}`,
         invalidateOnRefresh: true,
@@ -202,7 +213,7 @@ export default function ScrollWatchSequence({
       target = frameForProgress(trigger.progress, safeCount);
       jump.current = (index) => {
         if (!ready || !trigger || !chapters[index]) return;
-        const y = trigger.start + (trigger.end - trigger.start) * chapters[index].frame / (safeCount - 1);
+        const y = trigger.start + (trigger.end - trigger.start) * Math.max(0, Math.min(safeCount - 1, chapters[index].frame)) / (safeCount - 1);
         if (scroll) scroll.scrollTo(y, { immediate: true });
         else window.scrollTo({ top: y, behavior: 'instant' });
         ScrollTrigger.update();
@@ -214,21 +225,23 @@ export default function ScrollWatchSequence({
     observer.observe(root);
     const visibilityObserver = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
-      if (!visible) { audio.current?.pause(); setSound(false); }
+      if (!visible) { soundRequest.current++; player?.pause(); setSound(false); }
     });
     visibilityObserver.observe(viewport);
-    const hideAudio = () => { if (document.hidden || !visible) { audio.current?.pause(); setSound(false); } };
+    const hideAudio = () => { if (document.hidden || !visible) { soundRequest.current++; player?.pause(); setSound(false); } };
     document.addEventListener('visibilitychange', hideAudio);
-    const onMotionChange = () => { if (motion.matches) fallback(); };
+    const onMotionChange = () => { if (motion.matches || shortViewport.matches) fallback(); };
+    shortViewport.addEventListener('change', onMotionChange);
     motion.addEventListener('change', onMotionChange);
     refresh();
     return () => {
-      disposed = true; abort.abort();
+      disposed = true; abort.abort(); clearTimeout(loadTimer); soundRequest.current++; player?.pause();
       cancelAnimationFrame(pendingDraw); cancelAnimationFrame(lenisRaf); cancelAnimationFrame(refreshRaf);
       observer.disconnect(); visibilityObserver.disconnect(); resizeObserver.disconnect();
       motion.removeEventListener('change', onMotionChange);
+      shortViewport.removeEventListener('change', onMotionChange);
       document.removeEventListener('visibilitychange', hideAudio);
-      (lenisInstance ?? ownedLenis)?.off('scroll', ScrollTrigger.update);
+      (lenisInstance ?? ownedLenis)?.off('scroll', updateScroll);
       ownedLenis?.destroy(); trigger?.kill(); pageTrigger?.kill(); free();
       jump.current = () => {};
     };
@@ -239,15 +252,20 @@ export default function ScrollWatchSequence({
   const toggleSound = async (pressed: boolean) => {
     const player = audio.current;
     if (!player) return;
+    const request = ++audioRequest.current;
     if (!pressed) { player.pause(); setSound(false); return; }
     player.volume = 0.18;
-    try { await player.play(); setSound(true); } catch { setSound(false); setAudioError(true); }
+    try {
+      await player.play();
+      if (request !== audioRequest.current || document.hidden || !player.isConnected) { player.pause(); return; }
+      setSound(true);
+    } catch { if (request === audioRequest.current) { setSound(false); setAudioError(true); } }
   };
   const jumpTo = (index: number) => jump.current(index);
   const current = chapters[active] ?? WATCH_CHAPTERS[0];
   return (
     <>
-      <section ref={section} id={id} className={`watch-sequence ${className}`} data-mode={mode} aria-labelledby={titleId} style={{ '--scroll-screens': scrollScreens + 1 } as CSSProperties}>
+      <section ref={section} id={id} className={`watch-sequence ${className}`} data-mode={mode} aria-labelledby={titleId} style={{ '--scroll-screens': safeScreens + 1 } as CSSProperties}>
         <div ref={stage} className="watch-stage">
           <div className="watch-stage-rule"><span>GRAND CENTRAL WATCH</span><span>AN INTERACTIVE STUDY</span></div>
           <img className="watch-poster" src={poster} alt="Longines Pilot Majetek watch with a black dial, polished steel case, and brown leather strap" loading="lazy" decoding="async" />
@@ -266,12 +284,12 @@ export default function ScrollWatchSequence({
             </div>)}
           </div>
           {mode !== 'static' && <nav className="watch-tracker" aria-label="Assembly chapters"><span className="tracker-label technical-label">THE SEQUENCE</span><div className="watch-steps"><div className="step-line"><div ref={rail} /></div>{chapters.map((chapter, index) => <button key={chapter.label} type="button" className="watch-step" data-active={active === index} data-passed={active >= index} aria-current={active === index ? 'step' : undefined} disabled={mode !== 'ready'} onClick={() => jumpTo(index)}><span className="step-marker" /><span className="step-number">0{index + 1}</span><span>{chapter.label}</span></button>)}</div><span ref={counter} className="watch-counter technical-label">001 / {safeCount}</span></nav>}
-          {mode === 'loading' && <div className="watch-loading" role="status"><span className="technical-label">PREPARING THE MOVEMENT</span><Progress aria-label="Loading watch frames" value={loaded / safeCount * 100} className="watch-load-progress" /><span className="technical-label">{Math.round(loaded / safeCount * 100)}%</span></div>}
+          {mode === 'loading' && <output className="watch-loading"><span className="technical-label">PREPARING THE MOVEMENT</span><Progress aria-label="Loading watch frames" value={loaded / safeCount * 100} className="watch-load-progress" /><span className="technical-label">{Math.round(loaded / safeCount * 100)}%</span></output>}
           <div className="watch-bottom">
             <a href={`#${id}-end`} className="watch-scroll-cue technical-label">{mode === 'static' ? 'CONTINUE EXPLORING' : 'SCROLL TO EXPLORE'}<span>↓</span></a>
             {mode !== 'static' && <nav className="watch-tabs" aria-label="Jump to a chapter">{chapters.map((chapter, index) => <button key={chapter.label} type="button" className="watch-tab" data-active={active === index} disabled={mode !== 'ready'} aria-label={`Chapter ${index + 1}: ${chapter.label}`} aria-current={active === index ? 'step' : undefined} onClick={() => jumpTo(index)}><span>0{index + 1}</span><span className="tab-title">{chapter.label}</span></button>)}</nav>}
             {mode === 'static' && <span className="static-label technical-label">STILL VIEW</span>}
-            <div className="watch-audio"><Toggle className="watch-sound" pressed={sound} onPressedChange={(value) => void toggleSound(value)} disabled={audioError} aria-label={sound ? 'Mute mechanical ticking' : 'Play mechanical ticking'}><span className="sound-bars" aria-hidden="true"><i /><i /><i /><i /></span>{audioError ? 'SOUND UNAVAILABLE' : sound ? 'SOUND ON' : 'SOUND OFF'}</Toggle><audio ref={audio} src={audioSrc} preload="none" loop onError={() => { setAudioError(true); setSound(false); }} /></div>
+            <div className="watch-audio"><Toggle className="watch-sound" pressed={sound} onPressedChange={(value) => void toggleSound(value)} disabled={audioError} aria-label={sound ? 'Mute mechanical ticking' : 'Play mechanical ticking'}><span className="sound-bars" aria-hidden="true"><i /><i /><i /><i /></span>{audioError ? 'SOUND UNAVAILABLE' : sound ? 'SOUND ON' : 'SOUND OFF'}</Toggle><audio ref={audio} src={audioSrc} preload="none" loop onPause={() => setSound(false)} onError={() => { setAudioError(true); setSound(false); }} /></div>
           </div>
           <span className="sr-only">{mode === 'static' ? 'Static image view. Animation is disabled for accessibility, data saving, or device performance.' : `Scroll to explore. Current chapter: ${current.label}.`}</span>
         </div>

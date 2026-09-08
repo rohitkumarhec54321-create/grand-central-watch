@@ -1,0 +1,142 @@
+[
+  {
+    "id": "patek-philippe-calatrava-2906",
+    "name": "1969 Patek Philippe",
+    "model": "Calatrava - 3445",
+    "price": 23500.0,
+    "category": "pre-owned",
+    "url": "https://centralwatch.com/shop/pre-owned/patek-philippe-calatrava-2906",
+    "image": "/official/product-01.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1977_7918_large.png"
+  },
+  {
+    "id": "rolex-manual-wind-dress-2820",
+    "name": "1955 Rolex",
+    "model": "Manual Wind Dress - 8469",
+    "price": 6995.0,
+    "category": "pre-owned",
+    "url": "https://centralwatch.com/shop/pre-owned/rolex-manual-wind-dress-2820",
+    "image": "/official/product-02.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_2006_8190_large.png"
+  },
+  {
+    "id": "jaeger-lecoultre-master-control-2901",
+    "name": "2010's Jaeger LeCoultre",
+    "model": "Master Control - 176.8.40.S",
+    "price": 3995.0,
+    "category": "pre-owned",
+    "url": "https://centralwatch.com/shop/pre-owned/jaeger-lecoultre-master-control-2901",
+    "image": "/official/product-03.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1988_8018_large.png"
+  },
+  {
+    "id": "glashutte-panomatic-2942",
+    "name": "2026 Glashutte",
+    "model": "PanoMatic - 19211010361",
+    "price": 39500.0,
+    "category": "pre-owned",
+    "url": "https://centralwatch.com/shop/pre-owned/glashutte-panomatic-2942",
+    "image": "/official/product-04.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1994_8068_large.png"
+  },
+  {
+    "id": "cartier-roadster-2937",
+    "name": "2026 Cartier",
+    "model": "Roadster - WSRD0014",
+    "price": 9750.0,
+    "category": "pre-owned",
+    "url": "https://centralwatch.com/shop/pre-owned/cartier-roadster-2937",
+    "image": "/official/product-05.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_2000_8122_large.png"
+  },
+  {
+    "id": "depancel-autosport-blue-silver-limited-edition",
+    "name": "Depancel",
+    "model": "Autosport - Blue Silver - Limited Edition",
+    "price": 800.0,
+    "category": "micro-brand",
+    "url": "https://centralwatch.com/shop/micro-brand/depancel-autosport-blue-silver-limited-edition",
+    "image": "/official/product-06.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1967_7857_large.png"
+  },
+  {
+    "id": "baltic-mr-roulette-black-2026",
+    "name": "Baltic",
+    "model": "MR ROULETTE BLACK",
+    "price": 690.0,
+    "category": "micro-brand",
+    "url": "https://centralwatch.com/shop/micro-brand/baltic-mr-roulette-black-2026",
+    "image": "/official/product-07.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1903_7397_large.png"
+  },
+  {
+    "id": "echo-neutra-rivanera-piccolo-mb",
+    "name": "echo/neutra",
+    "model": "RIVANERA PICCOLO MB",
+    "price": 2030.0,
+    "category": "micro-brand",
+    "url": "https://centralwatch.com/shop/micro-brand/echo-neutra-rivanera-piccolo-mb",
+    "image": "/official/product-08.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1821_6729_large.png"
+  },
+  {
+    "id": "benrus-sky-chief-white",
+    "name": "2026 Benrus",
+    "model": "Sky Chief - White",
+    "price": 3950.0,
+    "category": "micro-brand",
+    "url": "https://centralwatch.com/shop/micro-brand/benrus-sky-chief-white",
+    "image": "/official/product-09.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1873_7172_large.png"
+  },
+  {
+    "id": "benrus-ultra-deep",
+    "name": "Benrus",
+    "model": "ULTRA-DEEP",
+    "price": 1195.0,
+    "category": "micro-brand",
+    "url": "https://centralwatch.com/shop/micro-brand/benrus-ultra-deep",
+    "image": "/official/product-10.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1441_4277_large.png"
+  },
+  {
+    "id": "depancel-allure-chronograph-mecaq",
+    "name": "ALLURE CHRONOGRAPH MECAQ",
+    "model": "",
+    "price": 595.0,
+    "category": "micro-brand",
+    "url": "https://centralwatch.com/shop/micro-brand/depancel-allure-chronograph-mecaq",
+    "image": "/official/product-11.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1591_4930_large.png"
+  },
+  {
+    "id": "grand-central-watch-brown-printed-alligator-strap",
+    "name": "Brown Printed Alligator Strap",
+    "model": "",
+    "price": 85.0,
+    "category": "straps",
+    "url": "https://centralwatch.com/shop/straps/grand-central-watch-brown-printed-alligator-strap",
+    "image": "/official/product-12.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1245_3559_large.png"
+  },
+  {
+    "id": "diamond-studs-2-00-carat",
+    "name": "Diamond Studs - 2.00 Carat",
+    "model": "",
+    "price": 2450.0,
+    "category": "affordable-fine-jewelry",
+    "url": "https://centralwatch.com/shop/affordable-fine-jewelry/diamond-studs-2-00-carat",
+    "image": "/official/product-13.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_1354_3946_large.png"
+  },
+  {
+    "id": "gcw-nylon-striped-solid-straps-sets-of-five",
+    "name": "Nylon Striped & Solid Straps Sets of Five",
+    "model": "",
+    "price": 29.95,
+    "category": "straps",
+    "url": "https://centralwatch.com/shop/straps/gcw-nylon-striped-solid-straps-sets-of-five",
+    "image": "/official/product-14.webp",
+    "sourceImage": "https://centralwatch.com/images/products/prod_876_1594_large.jpg"
+  }
+]
