@@ -100,3 +100,9 @@ The image viewer uses `components/ui/dialog.tsx`, `components/ui/button.tsx`, an
 The 32 optimized gallery WebPs total approximately 3.8 MiB; each visitor loads the appropriate responsive size, with full images requested when needed. Gallery images are lazy-loaded and have intrinsic dimensions to preserve layout. The primary 131-frame Longines interaction is unchanged.
 
 The educational copy describes general mechanical principles, with an on-page link to Longines’ explanation of mechanical movements. Supplied concept diagrams and their embedded annotations are not presented as verified model specifications or service instructions.
+
+## Atelier redesign
+
+The third version introduces a full studio hero, centered wordmark, Cormorant Garamond editorial typography, muted metallic labels, and an ivory/obsidian palette. Playfair Display remains the scroll section’s display face. The sequence canvas now uses a deliberate square studio frame capped at 720px, preventing the excessive enlargement and arbitrary cropping visible in the supplied screen recording. Chapter changes use a brief entrance dissolve with immediate removal of inactive captions, avoiding overlapping text during fast scrubbing.
+
+All 16 reference images remain available in asymmetric editorial compositions and the full-screen viewer. `components/EditorialMotion.tsx` provides restrained entrance animations through GSAP with reduced-motion support and cleanup. Include this file and the updated `app/layout.tsx`, `app/globals.css`, and both component stylesheets when using the complete redesigned demo.

@@ -249,13 +249,14 @@ export default function ScrollWatchSequence({
     <>
       <section ref={section} id={id} className={`watch-sequence ${className}`} data-mode={mode} aria-labelledby={titleId} style={{ '--scroll-screens': scrollScreens + 1 } as CSSProperties}>
         <div ref={stage} className="watch-stage">
+          <div className="watch-stage-rule"><span>GRAND CENTRAL WATCH</span><span>AN INTERACTIVE STUDY</span></div>
           <img className="watch-poster" src={poster} alt="Longines Pilot Majetek watch with a black dial, polished steel case, and brown leather strap" loading="lazy" decoding="async" />
           <canvas ref={canvas} className="watch-canvas" aria-hidden="true" />
           <div className="watch-shade" />
           <header className="watch-heading">
             <p className="technical-label">SCROLL-CONTROLLED CARBON-LUME ASSEMBLY</p>
-            <h2 id={titleId}>Unfold.<br />Inspect.<br /><em>Reassemble.</em><br />Seal.</h2>
-            <p className="watch-intro">A closer look at the art<br />of keeping time.</p>
+            <h2 id={titleId}><span className="watch-word">Unfold.</span>{' '}<span className="watch-word">Inspect.</span>{' '}<em className="watch-word">Reassemble.</em>{' '}<span className="watch-word">Seal.</span></h2>
+            <p className="watch-intro">The beauty of precision,<br />revealed at your pace.</p>
           </header>
           <div className="watch-edition technical-label"><span>THE ANATOMY OF TIME</span><span>LONGINES · PILOT MAJETEK</span></div>
           <div className="watch-captions" aria-live="polite" aria-atomic="true">

@@ -39,10 +39,10 @@ export default function WatchDetails() {
     </figure>;
   };
   return <div className="watch-details">
-    <nav className="detail-index" aria-label="Watchmaking details"><span>THE FIELD NOTES</span><a href="#case-assembly">01 / Assembly</a><a href="#movement-anatomy">02 / Movement</a><a href="#longines-study">03 / Exterior</a><a href="#design-studies">04 / Perspectives</a></nav>
+    <nav className="detail-index" aria-label="Watchmaking details"><span>THE COLLECTED STUDIES</span><a href="#case-assembly">01 / Assembly</a><a href="#movement-anatomy">02 / Movement</a><a href="#longines-study">03 / Exterior</a><a href="#design-studies">04 / Perspectives</a></nav>
 
     <section className="detail-section assembly-section" id="case-assembly" aria-labelledby="assembly-title">
-      <div className="detail-section-heading"><div><p className="detail-kicker">01 / THE ART OF ASSEMBLY</p><h2 id="assembly-title">A whole world.<br /><em>Taken apart.</em></h2></div><div className="detail-lede"><p>Before a timepiece becomes one object, it is a collection of carefully aligned layers. These carbon-lume concept studies make that hidden architecture visible.</p><span className="detail-note">Conceptual renderings · open any image to inspect</span></div></div>
+      <div className="detail-section-heading"><div><p className="detail-kicker">01 / THE ARCHITECTURE OF A TIMEPIECE</p><h2 id="assembly-title">A whole world.<br /><em>Taken apart.</em></h2></div><div className="detail-lede"><p>Before a timepiece becomes one object, it is a collection of carefully aligned layers. These carbon-lume concept studies make that hidden architecture visible.</p><span className="detail-note">Carbon-lume concept studies</span></div></div>
       {photo(3, 'detail-wide assembly-panorama')}
       <div className="detail-grid">{photo(1)}{photo(2)}</div>
       <div className="assembly-finale">{photo(4, 'detail-wide')}<div className="assembly-quote"><span className="detail-kicker">FROM SEPARATION TO SILHOUETTE</span><p>Every layer.<br />One timepiece.</p></div></div>
@@ -69,11 +69,11 @@ export default function WatchDetails() {
     </section>
 
     <section className="detail-section design-section" id="design-studies" aria-labelledby="design-title">
-      <div className="detail-section-heading"><div><p className="detail-kicker">04 / DIFFERENT DESIGN LANGUAGES</p><h2 id="design-title">One craft.<br /><em>Many expressions.</em></h2></div><div className="detail-lede"><p>Different watches reveal different priorities. Explore the instrument-like IWC references, then the open architecture of the Hublot study.</p><span className="detail-note">Separate visual references · not parts of the Longines assembly</span></div></div>
+      <div className="detail-section-heading"><div><p className="detail-kicker">04 / DIFFERENT DESIGN LANGUAGES</p><h2 id="design-title">One craft.<br /><em>Many expressions.</em></h2></div><div className="detail-lede"><p>Different watches reveal different priorities. Explore the instrument-like IWC references, then the open architecture of the Hublot study.</p><span className="detail-note">IWC & Hublot · independent design studies</span></div></div>
       <div className="iwc-layout">{photo(6, 'iwc-portrait')}<div className="iwc-context"><span className="detail-kicker">IWC / PILOT-STYLE CHRONOGRAPH</span><h3>Built around<br />the information.</h3><p>The olive dial balances several displays within a clear circular frame. White markings establish contrast; the textile strap carries the same color beyond the case.</p><dl><div><dt>At the center</dt><dd>Broad hands, three subdials, and a day-date window.</dd></div><div><dt>At the edge</dt><dd>A crown and two pushers change the side profile.</dd></div><div><dt>In the round</dt><dd>Orbit and reference sheets reveal the case and strap from multiple angles.</dd></div></dl></div></div>
       <div className="detail-grid">{photo(9)}{photo(10)}</div>
       <div className="hublot-layout"><div><span className="detail-kicker">HUBLOT / SKELETON-STYLE CHRONOGRAPH</span><h3>The mechanism<br />joins the face.</h3><p>Here, the visible mechanism becomes part of the dial’s composition. Repeated fasteners, layered surfaces, and strong contrast give the exterior a distinctly architectural character.</p><p className="detail-note">Inspect the side controls, caseback, and clasp in the detail panels.</p></div>{photo(11)}</div>
-      <div className="detail-end"><span className="detail-kicker">16 IMAGES / ONE CLOSER LOOK</span><p>The more you look,<br /><em>the more you see.</em></p><a href="#watch-sequence">Return to the scroll experience <span>↑</span></a></div>
+      <div className="detail-end"><span className="detail-kicker">A CONTINUING APPRECIATION</span><p>The more you look,<br /><em>the more you see.</em></p><a href="#watch-sequence">Return to the scroll experience <span>↑</span></a></div>
     </section>
 
     <Dialog open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }}>
