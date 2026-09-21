@@ -1,8 +1,14 @@
-# Grand Central Watch — GC—01 cinematic product study
+# Grand Central Watch — Longines scroll film
 
-The current homepage is a warm-ivory, scroll-driven Three.js product film with an original articulated GLB, seven camera chapters, four selectable finishes, and matching lightweight mobile/static renders. See [the GC—01 implementation notes](docs-gc01.md). The seven ancillary pages and all sixteen supplied reference images on `/craft` are preserved.
+The homepage now features the supplied Longines image (`ChatGPT Image Sep 2, 2026, 07_01_16 AM.png`) and the matching `claud video.mp4` render sequence. The earlier GC—01 model, assets, finish selector and model-generation scripts have been removed.
 
-The earlier image-sequence component remains available as a standalone integration. Its documentation follows.
+`components/LonginesLanding.tsx` keeps the ivory art direction and uses the exact supplied photograph for its opening and static fallback. Native scroll moves from a subtle push into the photograph to 131 cached frames covering the dial, crystal/case separation, crown, caseback and luminous finish. This is a pre-rendered image sequence, not a reconstructed GLB from a single photograph. The supplied film determines the motion and resolution.
+
+Frames load in batches of four, only near the section. All frames decode before the extended scroll track activates. Mobile uses 480px frames; desktop uses 720px. A single requestAnimationFrame callback draws only changed frames, with repaint on resize. Reduced motion, low memory, data-saving, a failed load, a 30-second loading timeout, or sustained slow draws restore the supplied static image without the extended pin. Resources and scroll observers are released on unmount.
+
+The perspective selector contains only views of the same Longines watch. The other seven pages and all sixteen supplied images remain available. Run the existing development/build commands below. Browser checks are in `scripts/check-longines-browser.mjs`.
+
+## Earlier standalone sequence component
 
 # Grand Central Watch — ScrollWatchSequence
 
@@ -95,7 +101,7 @@ The script samples evenly across the full duration, selects 120–150 frames nea
 
 ## Verification
 
-Production build and TypeScript checking are included in the delivery validation. Asset counts, decoding, and chapter boundaries are checked separately. The GC—01 homepage has also passed desktop Chrome interaction checks, mobile and reduced-motion emulation, and failed-model recovery. Physical-device performance has not been measured.
+Production build and TypeScript checking are included in the delivery validation. Asset counts, decoding, and chapter boundaries are checked separately. Physical-device performance has not been measured.
 
 ## Expanded visual field notes
 
@@ -124,7 +130,3 @@ Motion now spans hero staging, route entrance reveals, image masks and scale set
 Fixed stalled-loading fallback (45-second maximum), asynchronous audio cancellation after leaving the section, external Lenis listener cleanup, short-viewport static fallback, mobile control positioning, and the gallery return link after its move to `/craft`. Body-size changes refresh scroll distances through ResizeObserver, including FAQ expansion and filtered catalog changes.
 
 Validation: production static build and TypeScript passed; scoped correctness/accessibility lint passed; `scripts/check-site.mjs` checks every generated internal page link and anchor, image path, all 16 studies, catalog search/category/sort/empty states, and address separation. `scripts/check-sequence.mjs` verifies all forward/reverse frame mappings and chapter boundaries. Browser interaction and physical-device performance testing remain unperformed.
-
-## GC—01 validation (September 21, 2026)
-
-Verified the live WebGL canvas, all seven scroll chapters, four finish selections, the design-notes disclosure, mobile still chapters without a GLB request, reduced-motion mode without a canvas or GLB request, and recovery after a blocked model request. No browser exceptions were reported. TypeScript checking passed. The supplied imagery remains available on the craft page.

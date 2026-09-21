@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import GC01Landing from '@/components/GC01Landing';
+import LonginesLanding from '@/components/LonginesLanding';
 export const metadata: Metadata = {
-  title: 'GC—01 | Grand Central Watch',
+  title: 'Longines — A Study in Steel & Leather | Grand Central Watch',
   description:
-    'An interactive design study in time. Explore the GC—01 in three dimensions, from its sculpted case to the movement within.',
+    'Explore the supplied Longines watch through a scroll-controlled film: dial, fluted bezel, case, crown and brown leather strap.',
 };
 export default function Home() {
-  return <GC01Landing />;
+  return <LonginesLanding />;
 }
