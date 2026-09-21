@@ -6,7 +6,7 @@ The homepage now features the supplied Longines image (`ChatGPT Image Sep 2, 202
 
 Frames load in batches of four, only near the section. All frames decode before the extended scroll track activates. Mobile uses 480px frames; desktop uses 720px. A single requestAnimationFrame callback draws only changed frames, with repaint on resize. Reduced motion, low memory, data-saving, a failed load, a 30-second loading timeout, or sustained slow draws restore the supplied static image without the extended pin. Resources and scroll observers are released on unmount.
 
-The perspective selector contains only views of the same Longines watch. The other seven pages and all sixteen supplied images remain available. Run the existing development/build commands below. Browser checks are in `scripts/check-longines-browser.mjs`.
+The perspective selector contains only views of the same Longines watch. The other seven pages and all seventeen supplied images remain available. Run the existing development/build commands below. Browser checks are in `scripts/check-longines-browser.mjs`.
 
 ## Earlier standalone sequence component
 
@@ -105,11 +105,11 @@ Production build and TypeScript checking are included in the delivery validation
 
 ## Expanded visual field notes
 
-`components/WatchDetails.tsx` and its scoped `WatchDetails.css` add four editorial sections on `/craft`: carbon-lume assembly, movement anatomy, Longines exterior studies, and separate IWC/Hublot design references. All 16 supplied images appear on that page with descriptive captions and alt text. Every image opens a full-screen accessible dialog with previous/next controls, left/right arrow navigation, Escape dismissal, and focus restoration.
+`components/WatchDetails.tsx` and its scoped `WatchDetails.css` add four editorial sections on the homepage and `/craft`: carbon-lume assembly, movement anatomy, Longines exterior studies, and separate IWC/Hublot design references. All 17 supplied images appear on that page with descriptive captions and alt text. Every image opens a full-screen accessible dialog with previous/next controls, left/right arrow navigation, Escape dismissal, and focus restoration.
 
 The image viewer uses `components/ui/dialog.tsx`, `components/ui/button.tsx`, and `lucide-react`, in addition to the shared UI dependencies. Copy `public/watch-gallery/` when integrating the expanded sections. A source-to-asset mapping is recorded in `public/watch-gallery/manifest.json`. `scripts/prepare-gallery.py` produces 900px responsive previews and full images up to 1920px without cropping their compositions.
 
-The 32 optimized gallery WebPs total approximately 3.8 MiB; each visitor loads the appropriate responsive size, with full images requested when needed. Gallery images are lazy-loaded and have intrinsic dimensions to preserve layout. The primary 131-frame Longines component remains available separately.
+The 34 optimized gallery WebPs total approximately 4 MiB; each visitor loads the appropriate responsive size, with full images requested when needed. Gallery images are lazy-loaded and have intrinsic dimensions to preserve layout. The primary 131-frame Longines component remains available separately.
 
 The educational copy describes general mechanical principles, with an on-page link to Longines’ explanation of mechanical movements. Supplied concept diagrams and their embedded annotations are not presented as verified model specifications or service instructions.
 
@@ -117,7 +117,7 @@ The educational copy describes general mechanical principles, with an on-page li
 
 The third version introduces a full studio hero, centered wordmark, Cormorant Garamond editorial typography, muted metallic labels, and an ivory/obsidian palette. Playfair Display remains the scroll section’s display face. The sequence canvas now uses a deliberate square studio frame capped at 720px, preventing the excessive enlargement and arbitrary cropping visible in the supplied screen recording. Chapter changes use a brief entrance dissolve with immediate removal of inactive captions, avoiding overlapping text during fast scrubbing.
 
-All 16 reference images remain available in asymmetric editorial compositions and the full-screen viewer. `components/EditorialMotion.tsx` provides restrained entrance animations through GSAP with reduced-motion support and cleanup. Include this file and the updated `app/layout.tsx`, `app/globals.css`, and both component stylesheets when using the complete redesigned demo.
+All 17 reference images remain available in asymmetric editorial compositions and the full-screen viewer. `components/EditorialMotion.tsx` provides restrained entrance animations through GSAP with reduced-motion support and cleanup. Include this file and the updated `app/layout.tsx`, `app/globals.css`, and both component stylesheets when using the complete redesigned demo.
 
 ## Complete atelier expansion (September 9, 2026)
 
@@ -129,4 +129,4 @@ Motion now spans hero staging, route entrance reveals, image masks and scale set
 
 Fixed stalled-loading fallback (45-second maximum), asynchronous audio cancellation after leaving the section, external Lenis listener cleanup, short-viewport static fallback, mobile control positioning, and the gallery return link after its move to `/craft`. Body-size changes refresh scroll distances through ResizeObserver, including FAQ expansion and filtered catalog changes.
 
-Validation: production static build and TypeScript passed; scoped correctness/accessibility lint passed; `scripts/check-site.mjs` checks every generated internal page link and anchor, image path, all 16 studies, catalog search/category/sort/empty states, and address separation. `scripts/check-sequence.mjs` verifies all forward/reverse frame mappings and chapter boundaries. Browser interaction and physical-device performance testing remain unperformed.
+Validation: production static build and TypeScript passed; scoped correctness/accessibility lint passed; `scripts/check-site.mjs` checks every generated internal page link and anchor, image path, all 17 studies, catalog search/category/sort/empty states, and address separation. `scripts/check-sequence.mjs` verifies all forward/reverse frame mappings and chapter boundaries. Browser interaction and physical-device performance testing remain unperformed.

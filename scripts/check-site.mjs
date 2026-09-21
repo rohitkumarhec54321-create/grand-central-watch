@@ -40,7 +40,11 @@ for(const [route,html] of pages){
    const path=match[1];if(path.startsWith('/'))assert(fs.existsSync(`out${path}`),`Missing image: ${path}`);
  }
 }
-assert.equal((pages.get('/craft').match(/data-gallery-id=/g)||[]).length,16,'All 16 supplied studies must render');
+for (const route of ['/', '/craft']) {
+ const manifest=JSON.parse(fs.readFileSync('public/watch-gallery/manifest.json','utf8'));
+ assert.equal(manifest.length,17);
+ for (const item of manifest) assert(pages.get(route).includes('data-gallery-id="'+item.id+'"'), 'Missing study '+item.id+' on '+route);
+}
 assert(pages.get('/services').includes('52 Vanderbilt Avenue'),'Dedicated shipping address');
 assert(pages.get('/visit').includes('45th Street Passageway'),'Boutique address');
-console.log('Passed: 8 routes, all internal links and anchors, image paths, 16 study images, 14 catalog items, query/category/sort/empty states, and distinct mail-in/boutique addresses.');
+console.log('Passed: 8 routes, all internal links and anchors, image paths, 17 study images on homepage and craft page, 14 catalog items, query/category/sort/empty states, and distinct mail-in/boutique addresses.');

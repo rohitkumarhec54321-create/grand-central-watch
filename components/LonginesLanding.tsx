@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import WatchDetails from './WatchDetails';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './LonginesLanding.css';
@@ -432,7 +433,7 @@ export default function LonginesLanding() {
             cream-toned numerals against a deep black dial. A watch that rewards
             a closer look.
           </p>
-          <Link className="lw-link" href="/craft">
+          <Link className="lw-link" href="#collected-studies">
             Explore the complete studies <span>↗</span>
           </Link>
         </div>
@@ -480,6 +481,9 @@ export default function LonginesLanding() {
           />
         </div>
       </section>
+      <div id="collected-studies">
+        <WatchDetails />
+      </div>
       <section className="lw-invitation">
         <span className="lw-eyebrow">CONTINUE THE CONVERSATION</span>
         <h2>

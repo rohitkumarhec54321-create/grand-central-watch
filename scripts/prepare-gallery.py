@@ -1,9 +1,10 @@
-"""Optimize the 16 user-supplied reference images, retaining their full compositions."""
+"""Optimize the 17 user-supplied reference images, retaining their full compositions."""
 from pathlib import Path
 from PIL import Image, ImageOps
 import json
 source=Path('/Users/khushikumari/Downloads')
 items=[
+('gold-dress','ChatGPT Image Aug 27, 2026, 06_02_22 PM.png'),
 ('movement-overview','3D_watch_with_geometric_casing_202608240423.jpeg'),
 ('crystal-lift','ChatGPT Image Aug 27, 2026, 10_21_06 AM.png'),
 ('exploded-perspective','ChatGPT Image Aug 27, 2026, 10_21_26 AM.png'),

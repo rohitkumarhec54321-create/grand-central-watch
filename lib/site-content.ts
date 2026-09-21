@@ -6,7 +6,7 @@ export const navigation = [
   { label: 'Service & restoration', href: '/services', description: 'Care for the timepiece you treasure.' },
   { label: 'The collection', href: '/collection', description: 'Vintage, contemporary, and independent.' },
   { label: 'Our story', href: '/our-story', description: 'Three generations. One New York institution.' },
-  { label: 'The craft', href: '/craft', description: 'Sixteen studies in watchmaking.' },
+  { label: 'The craft', href: '/craft', description: 'Seventeen studies in watchmaking.' },
   { label: 'Visit the atelier', href: '/visit', description: 'Find us beside Track 38.' },
   { label: 'The journal', href: '/journal', description: 'In print, on film, and through the years.' },
   { label: 'Client care', href: '/client-care', description: 'Answers, warranties, and purchase information.' },
