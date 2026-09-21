@@ -1,3 +1,9 @@
+# Grand Central Watch — GC—01 cinematic product study
+
+The current homepage is a warm-ivory, scroll-driven Three.js product film with an original articulated GLB, seven camera chapters, four selectable finishes, and matching lightweight mobile/static renders. See [the GC—01 implementation notes](docs-gc01.md). The seven ancillary pages and all sixteen supplied reference images on `/craft` are preserved.
+
+The earlier image-sequence component remains available as a standalone integration. Its documentation follows.
+
 # Grand Central Watch — ScrollWatchSequence
 
 Next.js 16 App Router, TypeScript, Tailwind CSS 4, GSAP ScrollTrigger, and Lenis. The expanded luxury website includes eight routes. The live centralwatch.com website was not modified; transactions continue through its real inquiry, shop, account, and contact destinations.
@@ -89,7 +95,7 @@ The script samples evenly across the full duration, selects 120–150 frames nea
 
 ## Verification
 
-Production build and TypeScript checking are included in the delivery validation. Asset counts, decoding, and chapter boundaries are checked separately. Browser interaction and device-performance testing have not been performed.
+Production build and TypeScript checking are included in the delivery validation. Asset counts, decoding, and chapter boundaries are checked separately. The GC—01 homepage has also passed desktop Chrome interaction checks, mobile and reduced-motion emulation, and failed-model recovery. Physical-device performance has not been measured.
 
 ## Expanded visual field notes
 
@@ -97,7 +103,7 @@ Production build and TypeScript checking are included in the delivery validation
 
 The image viewer uses `components/ui/dialog.tsx`, `components/ui/button.tsx`, and `lucide-react`, in addition to the shared UI dependencies. Copy `public/watch-gallery/` when integrating the expanded sections. A source-to-asset mapping is recorded in `public/watch-gallery/manifest.json`. `scripts/prepare-gallery.py` produces 900px responsive previews and full images up to 1920px without cropping their compositions.
 
-The 32 optimized gallery WebPs total approximately 3.8 MiB; each visitor loads the appropriate responsive size, with full images requested when needed. Gallery images are lazy-loaded and have intrinsic dimensions to preserve layout. The primary 131-frame Longines interaction is unchanged.
+The 32 optimized gallery WebPs total approximately 3.8 MiB; each visitor loads the appropriate responsive size, with full images requested when needed. Gallery images are lazy-loaded and have intrinsic dimensions to preserve layout. The primary 131-frame Longines component remains available separately.
 
 The educational copy describes general mechanical principles, with an on-page link to Longines’ explanation of mechanical movements. Supplied concept diagrams and their embedded annotations are not presented as verified model specifications or service instructions.
 
@@ -118,3 +124,7 @@ Motion now spans hero staging, route entrance reveals, image masks and scale set
 Fixed stalled-loading fallback (45-second maximum), asynchronous audio cancellation after leaving the section, external Lenis listener cleanup, short-viewport static fallback, mobile control positioning, and the gallery return link after its move to `/craft`. Body-size changes refresh scroll distances through ResizeObserver, including FAQ expansion and filtered catalog changes.
 
 Validation: production static build and TypeScript passed; scoped correctness/accessibility lint passed; `scripts/check-site.mjs` checks every generated internal page link and anchor, image path, all 16 studies, catalog search/category/sort/empty states, and address separation. `scripts/check-sequence.mjs` verifies all forward/reverse frame mappings and chapter boundaries. Browser interaction and physical-device performance testing remain unperformed.
+
+## GC—01 validation (September 21, 2026)
+
+Verified the live WebGL canvas, all seven scroll chapters, four finish selections, the design-notes disclosure, mobile still chapters without a GLB request, reduced-motion mode without a canvas or GLB request, and recovery after a blocked model request. No browser exceptions were reported. TypeScript checking passed. The supplied imagery remains available on the craft page.
