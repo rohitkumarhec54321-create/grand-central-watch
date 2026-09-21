@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Playfair_Display, Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import './atelier.css';
+import './experience.css';
 import SiteShell from '@/components/SiteShell';
 const sans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const mono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });

@@ -12,7 +12,7 @@
     "format": "oxfmt",
     "build:sites": "vinext build",
     "typecheck": "tsc --noEmit",
-    "check:sequence": "node scripts/check-sequence.mjs"
+    "check:experience": "node scripts/check-gc01-browser.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

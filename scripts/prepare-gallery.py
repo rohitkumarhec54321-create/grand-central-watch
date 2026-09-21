@@ -1,27 +1,9 @@
-"""Optimize the 17 user-supplied reference images, retaining their full compositions."""
+"""Optimize the 8 user-supplied reference images, retaining their full compositions."""
 from pathlib import Path
 from PIL import Image, ImageOps
 import json
 source=Path('/Users/khushikumari/Downloads')
-items=[
-('gold-dress','ChatGPT Image Aug 27, 2026, 06_02_22 PM.png'),
-('movement-overview','3D_watch_with_geometric_casing_202608240423.jpeg'),
-('crystal-lift','ChatGPT Image Aug 27, 2026, 10_21_06 AM.png'),
-('exploded-perspective','ChatGPT Image Aug 27, 2026, 10_21_26 AM.png'),
-('exploded-axis','ChatGPT Image Aug 27, 2026, 10_21_34 AM.png'),
-('carbon-hero','ChatGPT Image Aug 30, 2026, 06_30_49 PM.png'),
-('longines-front','ChatGPT Image Sep 2, 2026, 06_57_18 AM.png'),
-('iwc-portrait','ChatGPT Image Sep 2, 2026, 06_57_10 AM.png'),
-('longines-perspective','ChatGPT Image Sep 2, 2026, 07_01_16 AM.png'),
-('longines-views','ChatGPT Image Sep 2, 2026, 06_57_26 AM.png'),
-('iwc-orbit','ChatGPT Image Sep 2, 2026, 06_52_30 AM.png'),
-('iwc-views','ChatGPT Image Sep 2, 2026, 06_35_39 AM.png'),
-('hublot-views','ChatGPT Image Sep 2, 2026, 06_35_32 AM.png'),
-('movement-architecture','Watch_movement_assembly_diagram_2K_202608240432 (1).jpeg'),
-('movement-energy','Watch_movement_assembly_diagram_2K_202608240432.jpeg'),
-('movement-balance','Watch_movement_interior_view_ass…_202608240432.jpeg'),
-('movement-hairspring','Watch_movement_schematic_view_2K_202608240432.jpeg'),
-]
+items=[(item['id'],item['source']) for item in json.loads(Path('public/watch-gallery/manifest.json').read_text())]
 root=Path('public/watch-gallery');root.mkdir(exist_ok=True)
 manifest=[]
 for name,filename in items:

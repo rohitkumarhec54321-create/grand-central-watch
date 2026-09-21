@@ -1,0 +1,234 @@
+{
+  "name": "GC—01 / Atelier study",
+  "concept": true,
+  "units": "Design proportions; not a manufacturing specification",
+  "parts": [
+    {
+      "name": "case",
+      "explode": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "bezel",
+      "explode": [
+        -0.6,
+        0.1,
+        1.3
+      ]
+    },
+    {
+      "name": "crystal",
+      "explode": [
+        -1.3,
+        0.35,
+        2.5
+      ]
+    },
+    {
+      "name": "dial",
+      "explode": [
+        -0.3,
+        0,
+        0.66
+      ]
+    },
+    {
+      "name": "hands",
+      "explode": [
+        -0.7,
+        0.1,
+        1.85
+      ]
+    },
+    {
+      "name": "movement",
+      "explode": [
+        0.8,
+        -0.15,
+        -1.45
+      ]
+    },
+    {
+      "name": "caseback",
+      "explode": [
+        1.6,
+        -0.3,
+        -2.6
+      ]
+    },
+    {
+      "name": "crown",
+      "explode": [
+        1.9,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "bracelet_lower_00",
+      "explode": [
+        -0.18,
+        -0.45,
+        -0.1
+      ]
+    },
+    {
+      "name": "bracelet_lower_01",
+      "explode": [
+        -0.22999999999999998,
+        -0.5650000000000001,
+        -0.125
+      ]
+    },
+    {
+      "name": "bracelet_lower_02",
+      "explode": [
+        -0.28,
+        -0.68,
+        -0.15000000000000002
+      ]
+    },
+    {
+      "name": "bracelet_lower_03",
+      "explode": [
+        -0.33,
+        -0.795,
+        -0.17500000000000002
+      ]
+    },
+    {
+      "name": "bracelet_lower_04",
+      "explode": [
+        -0.38,
+        -0.91,
+        -0.2
+      ]
+    },
+    {
+      "name": "bracelet_lower_05",
+      "explode": [
+        -0.43,
+        -1.0250000000000001,
+        -0.225
+      ]
+    },
+    {
+      "name": "bracelet_lower_06",
+      "explode": [
+        -0.48000000000000004,
+        -1.1400000000000001,
+        -0.25
+      ]
+    },
+    {
+      "name": "bracelet_lower_07",
+      "explode": [
+        -0.53,
+        -1.2550000000000001,
+        -0.275
+      ]
+    },
+    {
+      "name": "bracelet_lower_08",
+      "explode": [
+        -0.5800000000000001,
+        -1.37,
+        -0.30000000000000004
+      ]
+    },
+    {
+      "name": "bracelet_lower_09",
+      "explode": [
+        -0.63,
+        -1.485,
+        -0.325
+      ]
+    },
+    {
+      "name": "bracelet_upper_00",
+      "explode": [
+        0.18,
+        0.45,
+        -0.1
+      ]
+    },
+    {
+      "name": "bracelet_upper_01",
+      "explode": [
+        0.22999999999999998,
+        0.5650000000000001,
+        -0.125
+      ]
+    },
+    {
+      "name": "bracelet_upper_02",
+      "explode": [
+        0.28,
+        0.68,
+        -0.15000000000000002
+      ]
+    },
+    {
+      "name": "bracelet_upper_03",
+      "explode": [
+        0.33,
+        0.795,
+        -0.17500000000000002
+      ]
+    },
+    {
+      "name": "bracelet_upper_04",
+      "explode": [
+        0.38,
+        0.91,
+        -0.2
+      ]
+    },
+    {
+      "name": "bracelet_upper_05",
+      "explode": [
+        0.43,
+        1.0250000000000001,
+        -0.225
+      ]
+    },
+    {
+      "name": "bracelet_upper_06",
+      "explode": [
+        0.48000000000000004,
+        1.1400000000000001,
+        -0.25
+      ]
+    },
+    {
+      "name": "bracelet_upper_07",
+      "explode": [
+        0.53,
+        1.2550000000000001,
+        -0.275
+      ]
+    },
+    {
+      "name": "bracelet_upper_08",
+      "explode": [
+        0.5800000000000001,
+        1.37,
+        -0.30000000000000004
+      ]
+    },
+    {
+      "name": "bracelet_upper_09",
+      "explode": [
+        0.63,
+        1.485,
+        -0.325
+      ]
+    }
+  ],
+  "meshes": 60,
+  "triangles": 62224,
+  "bytes": 2938008
+}
