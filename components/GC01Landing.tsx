@@ -459,11 +459,7 @@ export default function GC01Landing() {
       <HeritageService />
       <section className="gc-invitation">
         <span className="gc-eyebrow">CONTINUE THE CONVERSATION</span>
-        <h2>
-          Good things
-          <br />
-          take <em>time.</em>
-        </h2>
+        <KineticHeading text={'Good things\ntake time.'} />
         <p>
           Discover the watches, the people
           <br />

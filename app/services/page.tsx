@@ -1,3 +1,4 @@
+import KineticHeading from '@/components/KineticHeading';
 import { assetPath } from '@/lib/paths';
 /* eslint-disable next/no-img-element -- Images are pre-optimized WebP assets for the static export. */
 import type { Metadata } from 'next';
@@ -46,11 +47,7 @@ export default function Services() {
         </div>
         <div className="section-heading" data-editorial-reveal>
           <span className="atelier-label">EXPERIENCE, AT EVERY SCALE</span>
-          <h2>
-            The right hands.
-            <br />
-            <em>The closest attention.</em>
-          </h2>
+          <KineticHeading text={"The right hands.\nThe closest attention."} className="kinetic-section"/>
           <p>
             From a first service to the restoration of a family heirloom, every
             recommendation begins with a physical inspection.
@@ -95,11 +92,7 @@ export default function Services() {
       <section className="dark-panel content-section" id="repair-process">
         <div className="section-heading" data-editorial-reveal>
           <span className="atelier-label">THE SERVICE JOURNEY</span>
-          <h2>
-            Considered.
-            <br />
-            <em>At every step.</em>
-          </h2>
+          <KineticHeading text={"Considered.\nAt every step."} className="kinetic-section"/>
         </div>
         <ol className="process-list">
           {process.map(([title, description], i) => (
@@ -133,11 +126,7 @@ export default function Services() {
       <section className="content-section pricing-section" id="pricing">
         <div className="section-heading" data-editorial-reveal>
           <span className="atelier-label">A CLEAR STARTING POINT</span>
-          <h2>
-            Service,
-            <br />
-            <em>with clarity.</em>
-          </h2>
+          <KineticHeading text={"Service,\nwith clarity."} className="kinetic-section"/>
           <p>
             Published starting prices in USD. Your individual estimate follows
             inspection. Declined estimates carry a $45–$275 evaluation fee.
@@ -166,22 +155,14 @@ export default function Services() {
           <span className="atelier-label">
             MANY MAKERS. ONE STANDARD OF CARE.
           </span>
-          <h2>
-            A shared respect
-            <br />
-            <em>for watchmaking.</em>
-          </h2>
+          <KineticHeading text={"A shared respect\nfor watchmaking."} className="kinetic-section"/>
         </div>
         <BrandDirectory />
       </section>
       <section className="content-section mail-section" id="mail-in">
         <div className="section-heading" data-editorial-reveal>
           <span className="atelier-label">FROM YOUR HOME TO OUR WORKSHOP</span>
-          <h2>
-            Care,
-            <br />
-            <em>from a distance.</em>
-          </h2>
+          <KineticHeading text={"Care,\nfrom a distance."} className="kinetic-section"/>
           <p>
             New clients: send an inquiry and wait for confirmation and shipping
             instructions before mailing a watch.

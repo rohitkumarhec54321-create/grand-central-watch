@@ -105,3 +105,7 @@
  .diagram-callout path { stroke-dashoffset:0!important; }
  .diagram-callout text { opacity:1!important; }
 }
+
+.kinetic-heading.kinetic-section { font-size:clamp(38px,5.1vw,78px)!important; margin:24px 0 30px; }
+.kinetic-heading.kinetic-journal { font-size:clamp(30px,3.4vw,52px)!important; margin:12px 0; }
+.dark-panel .kinetic-line:nth-child(2), .full-footer .kinetic-line:nth-child(2) { color:#b9b5a9; }

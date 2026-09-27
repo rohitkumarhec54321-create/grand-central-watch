@@ -1,3 +1,4 @@
+import KineticHeading from '@/components/KineticHeading';
 import { assetPath } from '@/lib/paths';
 /* eslint-disable next/no-img-element -- Images are pre-optimized WebP assets for the static export. */
 import type { Metadata } from 'next';
@@ -39,11 +40,7 @@ export default function Story() {
           <span className="atelier-label">
             A SMALL STALL. A LASTING TRADITION.
           </span>
-          <h2>
-            Built on craft.
-            <br />
-            <em>Carried by family.</em>
-          </h2>
+          <KineticHeading text={"Built on craft.\nCarried by family."} className="kinetic-section"/>
           <p>
             Max Kivel opened Grand Central Watch in 1952. The small terminal
             stall grew into a family business spanning three generations, with a
@@ -65,11 +62,7 @@ export default function Story() {
       </section>
       <section className="heritage-band content-section" data-editorial-reveal>
         <span className="atelier-label">70 YEARS · CELEBRATED IN 2022</span>
-        <h2>
-          Some things improve
-          <br />
-          <em>with time.</em>
-        </h2>
+        <KineticHeading text={"Some things improve\nwith time."} className="kinetic-section"/>
         <a
           className="editorial-link"
           href="https://centralwatch.com/70th-anniversary-"
