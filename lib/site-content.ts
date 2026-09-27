@@ -4,7 +4,7 @@ export const REPAIR_FORM = `${OFFICIAL}/images/fileman/Grand%20Central%20Watch%2
 export const CONTACT = { phone: '(212) 685-1689', tel: 'tel:+12126851689', email: 'centralwatchrepair@gmail.com', sms: 'sms:+16467892900' };
 export const navigation = [
   { label: 'Service & restoration', href: '/services', description: 'Care for the timepiece you treasure.' },
-  { label: 'The collection', href: '/collection', description: 'Vintage, contemporary, and independent.' },
+  { label: 'Shop', href: '/shop', description: 'Vintage, contemporary, and independent.' },
   { label: 'Our story', href: '/our-story', description: 'Three generations. One New York institution.' },
   { label: 'The craft', href: '/craft', description: 'Eight studies in watchmaking.' },
   { label: 'Visit the atelier', href: '/visit', description: 'Find us beside Track 38.' },
@@ -18,12 +18,9 @@ export const prices = [
 ] as const;
 export const brands = ['A. Lange & Söhne','Audemars Piguet','Baume & Mercier','Breguet','Breitling','Buccellati','Bulgari','Bulova','Cartier','Chopard','ChronoSport','Chronoswiss','Croton','Dunhill','Ebel','Elgin','Hamilton','Hermès','Heuer','Illinois','IWC','Jaeger-LeCoultre','Longines','Montblanc','Omega','Panerai','Patek Philippe','Piaget','Pierce','Roger Dubuis','Rolex','Seiko','TAG Heuer','Tiffany & Co.','Tourneau','Tudor','Tutima','Vacheron Constantin','Van Cleef & Arpels','Waldan Watches','Waltham','Wittnauer','Zodiac'];
 export const process = [
-  ['Begin a conversation', 'Visit the boutique, or send an inquiry before bringing or mailing your watch.'],
-  ['Receive guidance', 'The team reviews your inquiry and advises on the next step.'],
-  ['A closer inspection', 'A watchmaker examines the timepiece in person.'],
-  ['Approve the estimate', 'Review the proposed work, cost, and timing before deciding.'],
-  ['Entrust the work', 'A 50% deposit follows approval. Service and testing then begin.'],
-  ['Return to your wrist', 'Collect your watch or arrange its return shipment.'],
+  ['Drop Off or Mail In', 'Bring your watch to the terminal, or contact the team for mail-in instructions.'],
+  ['Physical Review & Estimate', 'A watchmaker examines the timepiece and prepares an estimate for the work.'],
+  ['Approve Estimate & Deposit', 'Review the proposed service and approve the estimate with a deposit before work begins.'],
 ];
 export const faqs = [
   { category: 'Service', q: 'May I visit without an online inquiry?', a: 'Yes. Bring your watch directly to the boutique. An online inquiry is optional for an in-person visit.' },
@@ -49,4 +46,4 @@ export const resources = [
   ['Instagram', 'https://www.instagram.com/GrandCentralWatch/'], ['YouTube', 'https://www.youtube.com/channel/UCCqoOD29rcYPaXiTpmLNrxA'], ['Facebook', 'https://www.facebook.com/GrandCentralWatch'], ['LinkedIn', 'https://www.linkedin.com/company/central-watch/'],
   ['Return policy', `${OFFICIAL}/return-policy`], ['Terms & conditions', `${OFFICIAL}/terms-conditions`], ['Common questions', `${OFFICIAL}/commonly-asked-questions`],
 ] as const;
-export const press = ['HODINKEE', 'GEAR PATROL', 'ROBB REPORT', 'THE WALL STREET JOURNAL', 'NEW YORK MAGAZINE', 'GQ'];
+export const press = ['Hodinkee', 'GQ', 'Esquire', 'WSJ', 'Robb Report', 'New York Magazine', 'Business Insider', 'National Geographic'];

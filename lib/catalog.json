@@ -1,114 +1,128 @@
 [
   {
-    "id": "patek-philippe-calatrava-2906",
-    "name": "1969 Patek Philippe",
-    "model": "Calatrava - 3445",
-    "price": 23500.0,
+    "id": "rolex-explorer-ii-2894",
+    "name": "2005 Rolex Explorer II",
+    "model": "16570T",
+    "price": 9500,
     "category": "pre-owned",
-    "url": "https://centralwatch.com/shop/pre-owned/patek-philippe-calatrava-2906"
+    "description": "A black dial and steel case give this travel companion its quiet resolve.",
+    "url": "https://centralwatch.com/shop/pre-owned/rolex-explorer-ii-2894"
+  },
+  {
+    "id": "panerai-luminor-marina-2931",
+    "name": "2025 Panerai Luminor Marina",
+    "model": "PAM01313",
+    "price": 6500,
+    "category": "pre-owned",
+    "description": "A deep blue dial meets the unmistakable presence of a 44 mm steel case.",
+    "url": "https://centralwatch.com/shop/pre-owned/panerai-luminor-marina-2931"
   },
   {
     "id": "rolex-manual-wind-dress-2820",
-    "name": "1955 Rolex",
-    "model": "Manual Wind Dress - 8469",
-    "price": 6995.0,
+    "name": "1955 Rolex Manual Wind Dress",
+    "model": "8469",
+    "price": 6995,
     "category": "pre-owned",
+    "description": "A hand-wound expression of mid-century restraint, made for a closer look.",
     "url": "https://centralwatch.com/shop/pre-owned/rolex-manual-wind-dress-2820"
   },
   {
-    "id": "jaeger-lecoultre-master-control-2901",
-    "name": "2010's Jaeger LeCoultre",
-    "model": "Master Control - 176.8.40.S",
-    "price": 3995.0,
-    "category": "pre-owned",
-    "url": "https://centralwatch.com/shop/pre-owned/jaeger-lecoultre-master-control-2901"
-  },
-  {
-    "id": "glashutte-panomatic-2942",
-    "name": "2026 Glashutte",
-    "model": "PanoMatic - 19211010361",
-    "price": 39500.0,
-    "category": "pre-owned",
-    "url": "https://centralwatch.com/shop/pre-owned/glashutte-panomatic-2942"
-  },
-  {
     "id": "cartier-roadster-2937",
-    "name": "2026 Cartier",
-    "model": "Roadster - WSRD0014",
-    "price": 9750.0,
+    "name": "2026 Cartier Roadster",
+    "model": "WSRD0014",
+    "price": 9750,
     "category": "pre-owned",
+    "description": "The Roadster brings a sculptural point of view to the everyday wrist.",
     "url": "https://centralwatch.com/shop/pre-owned/cartier-roadster-2937"
   },
   {
+    "id": "audemars-piguet-royal-oak-offshore-2896",
+    "name": "2014 Audemars Piguet Royal Oak Offshore",
+    "model": "26470ST.OO.A027CA.01",
+    "price": 23500,
+    "category": "pre-owned",
+    "description": "A blue dial, steel architecture and rubber strap strike a confident balance.",
+    "url": "https://centralwatch.com/shop/pre-owned/audemars-piguet-royal-oak-offshore-2896"
+  },
+  {
     "id": "depancel-autosport-blue-silver-limited-edition",
-    "name": "Depancel",
-    "model": "Autosport - Blue Silver - Limited Edition",
-    "price": 800.0,
+    "name": "Depancel Autosport",
+    "model": "Blue Silver · Limited Edition",
+    "price": 800,
     "category": "micro-brand",
+    "description": "Blue and silver give this limited edition a distinctly sporting rhythm.",
     "url": "https://centralwatch.com/shop/micro-brand/depancel-autosport-blue-silver-limited-edition"
   },
   {
     "id": "baltic-mr-roulette-black-2026",
-    "name": "Baltic",
-    "model": "MR ROULETTE BLACK",
-    "price": 690.0,
+    "name": "Baltic MR Roulette Black",
+    "model": "",
+    "price": 690,
     "category": "micro-brand",
+    "description": "A black-dial interpretation of Baltic’s quietly individual Roulette design.",
     "url": "https://centralwatch.com/shop/micro-brand/baltic-mr-roulette-black-2026"
   },
   {
     "id": "echo-neutra-rivanera-piccolo-mb",
-    "name": "echo/neutra",
-    "model": "RIVANERA PICCOLO MB",
-    "price": 2030.0,
+    "name": "echo/neutra Rivanera Piccolo MB",
+    "model": "",
+    "price": 2030,
     "category": "micro-brand",
+    "description": "An independent perspective on proportion, expressed in the Piccolo.",
     "url": "https://centralwatch.com/shop/micro-brand/echo-neutra-rivanera-piccolo-mb"
   },
   {
     "id": "benrus-sky-chief-white",
-    "name": "2026 Benrus",
-    "model": "Sky Chief - White",
-    "price": 3950.0,
+    "name": "2026 Benrus Sky Chief",
+    "model": "White",
+    "price": 3950,
     "category": "micro-brand",
+    "description": "A white dial brings a clear, composed presence to the Sky Chief.",
     "url": "https://centralwatch.com/shop/micro-brand/benrus-sky-chief-white"
   },
   {
     "id": "benrus-ultra-deep",
-    "name": "Benrus",
-    "model": "ULTRA-DEEP",
-    "price": 1195.0,
+    "name": "Benrus Ultra-Deep",
+    "model": "",
+    "price": 1195,
     "category": "micro-brand",
+    "description": "A purposeful instrument with an unmistakably Benrus identity.",
     "url": "https://centralwatch.com/shop/micro-brand/benrus-ultra-deep"
   },
   {
     "id": "depancel-allure-chronograph-mecaq",
-    "name": "ALLURE CHRONOGRAPH MECAQ",
+    "name": "Allure Chronograph MecaQ",
     "model": "",
-    "price": 595.0,
-    "category": "micro-brand",
+    "price": 595,
+    "category": "accessories",
+    "description": "A sporting chronograph to bring a different cadence to the collection.",
     "url": "https://centralwatch.com/shop/micro-brand/depancel-allure-chronograph-mecaq"
   },
   {
     "id": "grand-central-watch-brown-printed-alligator-strap",
     "name": "Brown Printed Alligator Strap",
     "model": "",
-    "price": 85.0,
-    "category": "straps",
+    "price": 85,
+    "category": "accessories",
+    "description": "Brown leather and an alligator-print texture bring warmth to the wrist.",
     "url": "https://centralwatch.com/shop/straps/grand-central-watch-brown-printed-alligator-strap"
   },
   {
     "id": "diamond-studs-2-00-carat",
-    "name": "Diamond Studs - 2.00 Carat",
-    "model": "",
-    "price": 2450.0,
-    "category": "affordable-fine-jewelry",
+    "name": "Diamond Studs",
+    "model": "2.00 Carat",
+    "price": 2450,
+    "category": "accessories",
+    "description": "Two points of light, with a combined presence of two carats.",
     "url": "https://centralwatch.com/shop/affordable-fine-jewelry/diamond-studs-2-00-carat"
   },
   {
     "id": "gcw-nylon-striped-solid-straps-sets-of-five",
-    "name": "Nylon Striped & Solid Straps Sets of Five",
+    "name": "Nylon Striped & Solid Strap Set of Five",
     "model": "",
     "price": 29.95,
-    "category": "straps",
+    "category": "accessories",
+    "description": "Five changes of character, from understated solids to considered stripes.",
     "url": "https://centralwatch.com/shop/straps/gcw-nylon-striped-solid-straps-sets-of-five"
   }
 ]
