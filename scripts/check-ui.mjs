@@ -17,7 +17,7 @@ try {
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`${route} overflow at ${width}`);
    for (const src of await page.locator('img').evaluateAll(imgs=>imgs.map(i=>i.getAttribute('src')))) assert(allowed.has(src)||(route==='/'&&src.startsWith(prefix+'/gc01/')),`Unexpected image ${src}`);
    const menu=page.getByRole('button',{name:'Open navigation menu'});await menu.click();await page.getByRole('dialog').waitFor();
-   assert(await page.getByRole('navigation',{name:'All pages'}).isVisible());await page.keyboard.press('Escape');await page.getByRole('dialog').waitFor({state:'hidden'});assert(await menu.evaluate(el=>el===document.activeElement));
+   assert(await page.getByRole('navigation',{name:'All pages'}).isVisible());if(route!=='/'&&route!=='/collection')assert.equal(await page.locator('.expanded-nav a[aria-current=page]').count(),1,`Active navigation: ${route}`);await page.keyboard.press('Escape');await page.getByRole('dialog').waitFor({state:'hidden'});assert(await menu.evaluate(el=>el===document.activeElement));
   }
  }
  await page.goto(base,{waitUntil:'networkidle'});await page.getByRole('button',{name:'Search the site'}).click();

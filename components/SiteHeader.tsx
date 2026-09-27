@@ -23,7 +23,7 @@ import {
 import catalog from '@/lib/catalog.json';
 
 export default function SiteHeader({ compact = false }: { compact?: boolean }) {
-  const pathname = usePathname();
+  const pathname = usePathname().replace(/\/$/, '') || '/';
   const [panel, setPanel] = useState<'menu' | 'search' | null>(null);
   const [query, setQuery] = useState('');
   const opener = useRef<HTMLButtonElement | null>(null);
@@ -128,7 +128,7 @@ export default function SiteHeader({ compact = false }: { compact?: boolean }) {
                 href="/shop"
                 aria-current={pathname === '/shop' ? 'page' : undefined}
               >
-                The collection
+                Shop watches
               </Link>
             </nav>
             <Link
