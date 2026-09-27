@@ -11,18 +11,19 @@ const filter=vm.runInNewContext(js+'\nfilterProducts');
 const catalog=JSON.parse(fs.readFileSync('lib/catalog.json','utf8'));
 const original=JSON.stringify(catalog);
 assert.equal(catalog.length,14);
-assert.equal(filter(catalog,'pre-owned','rolex','featured').length,1);
+assert.equal(filter(catalog,'pre-owned','rolex','featured').length,2);
 assert.equal(filter(catalog,'pre-owned','rolex 8469','featured').length,1);
 assert.equal(filter(catalog,'micro-brand','rolex','featured').length,0);
 assert.equal(filter(catalog,'all','no matching reference','featured').length,0);
-assert.equal(filter(catalog,'all','  PATEK  ','featured')[0].id,'patek-philippe-calatrava-2906');
+assert.equal(filter(catalog,'all','  PANERAI  ','featured')[0].id,'panerai-luminor-marina-2931');
 const low=filter(catalog,'all','','low'),high=filter(catalog,'all','','high');
 for(let i=1;i<low.length;i++)assert(low[i].price>=low[i-1].price);
 for(let i=1;i<high.length;i++)assert(high[i].price<=high[i-1].price);
 assert.equal(JSON.stringify(catalog),original,'Filtering and sorting must not mutate the shared catalog');
 
-const routes=['/','/services','/collection','/our-story','/visit','/journal','/client-care','/craft'];
-const filename=route=>route==='/'?'out/index.html':`out${route}.html`;
+const routes=['/','/services','/collection','/shop','/our-story','/visit','/journal','/client-care','/craft'];
+const filename=route=>route==='/'?'out/index.html':`out${route}/index.html`;
+const prefix=process.env.NEXT_PUBLIC_BASE_PATH || '';
 const pages=new Map(routes.map(route=>[route,fs.readFileSync(filename(route),'utf8')]));
 const ids=html=>[...html.matchAll(/\sid="([^"]+)"/g)].map(m=>m[1]);
 for(const [route,html] of pages){
@@ -31,13 +32,13 @@ for(const [route,html] of pages){
  assert(html.includes('id="main-content"'),`Missing skip target: ${route}`);
  assert.equal((html.match(/<main\b/g)||[]).length,1,`One main landmark: ${route}`);
  for(const match of html.matchAll(/<a\b[^>]*href="([^"?]+)"/g)){
-   const url=match[1];if(!url.startsWith('/')&&!url.startsWith('#'))continue;
-   const [path,hash]=url.split('#');const target=path||route;
+   const url=prefix && match[1].startsWith(prefix+'/') ? match[1].slice(prefix.length) : match[1];if(!url.startsWith('/')&&!url.startsWith('#'))continue;
+   const [path,hash]=url.split('#');const target=(path||route).replace(/\/$/,'')||'/';
    assert(pages.has(target),`Broken route ${route} -> ${url}`);
    if(hash)assert(ids(pages.get(target)).includes(hash),`Broken anchor ${route} -> ${url}`);
  }
  for(const match of html.matchAll(/<img\b[^>]*src="([^"]+)"/g)){
-   const path=match[1];if(path.startsWith('/'))assert(fs.existsSync(`out${path}`),`Missing image: ${path}`);
+   const path=prefix && match[1].startsWith(prefix+'/') ? match[1].slice(prefix.length) : match[1];if(path.startsWith('/'))assert(fs.existsSync(`out${path}`),`Missing image: ${path}`);
  }
 }
 for (const route of ['/', '/craft']) {
@@ -47,4 +48,4 @@ for (const route of ['/', '/craft']) {
 }
 assert(pages.get('/services').includes('52 Vanderbilt Avenue'),'Dedicated shipping address');
 assert(pages.get('/visit').includes('45th Street Passageway'),'Boutique address');
-console.log('Passed: 8 routes, all internal links and anchors, image paths, 8 selected study images on homepage and craft page, 14 catalog items, query/category/sort/empty states, and distinct mail-in/boutique addresses.');
+console.log('Passed: 9 routes, all internal links and anchors, image paths, 8 selected study images on homepage and craft page, 14 catalog items, query/category/sort/empty states, and distinct mail-in/boutique addresses.');

@@ -40,3 +40,6 @@ next-env.d.ts
 # Local package cache and compiler state
 /.pnpm-store/
 *.tsbuildinfo
+
+# Local Sites execution metadata
+/.sites-runtime/

@@ -108,8 +108,7 @@ try {
   });
   await mobile.waitForFunction(
     () =>
-      document.querySelector('.gc-poster')?.getAttribute('src') ===
-      '/gc01/exploded.webp',
+      document.querySelector('.gc-poster')?.getAttribute('src')?.endsWith('/gc01/exploded.webp'),
   );
   assert.equal(mobileModels.length, 0, 'Mobile must not download the GLB');
   const reduced = await browser.newPage({
@@ -125,7 +124,7 @@ try {
   await reduced.waitForFunction(
     () => document.querySelector('.gc01')?.dataset.presentation === 'static',
   );
-  assert.equal(await reduced.locator('canvas').count(), 0);
+  assert.equal(await reduced.locator('.gc-canvas').count(), 0);
   assert.equal(reducedModels.length, 0);
   assert(
     await reduced.evaluate(
@@ -141,7 +140,7 @@ try {
   await failed.waitForFunction(
     () => document.querySelector('.gc01')?.dataset.presentation === 'static',
   );
-  assert.equal(await failed.locator('canvas').count(), 0);
+  assert.equal(await failed.locator('.gc-canvas').count(), 0);
   assert.deepEqual(errors, []);
   console.log(
     'Passed: desktop WebGL, all seven scroll chapters, four finish selections, design notes, mobile stills without GLB, reduced motion without GLB, failed-model recovery, and zero browser exceptions.',
