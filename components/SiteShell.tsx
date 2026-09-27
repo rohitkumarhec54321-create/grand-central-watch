@@ -5,7 +5,7 @@ import SiteFooter from './SiteFooter';
 import EditorialMotion from './EditorialMotion';
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   return usePathname() === '/' ? (
-    <>{children}</>
+    <EditorialMotion>{children}</EditorialMotion>
   ) : (
     <EditorialMotion>
       <SiteHeader />

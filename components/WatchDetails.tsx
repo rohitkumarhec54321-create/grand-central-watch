@@ -1,5 +1,6 @@
 /* eslint-disable next/no-img-element -- Images are pre-optimized WebP assets for the static export. */
 'use client';
+import { assetPath } from '@/lib/paths';
 
 import { useRef, useState } from 'react';
 import Link from 'next/link';
@@ -11,6 +12,8 @@ import {
   DialogTitle,
 } from './ui/dialog';
 import './WatchDetails.css';
+import KineticHeading from './KineticHeading';
+import MovementDiagram from './MovementDiagram';
 
 export const GALLERY = [
   {
@@ -123,8 +126,8 @@ export default function WatchDetails() {
           }}
         >
           <img
-            src={`/watch-gallery/${entry.id}-small.webp`}
-            srcSet={`/watch-gallery/${entry.id}-small.webp 900w, /watch-gallery/${entry.id}.webp ${Math.min(1920, entry.width)}w`}
+            src={assetPath(`/watch-gallery/${entry.id}-small.webp`)}
+            srcSet={`${assetPath(`/watch-gallery/${entry.id}-small.webp`)} 900w, ${assetPath(`/watch-gallery/${entry.id}.webp`)} ${Math.min(1920, entry.width)}w`}
             sizes={
               className.includes('wide')
                 ? '(max-width: 767px) 90vw, 88vw'
@@ -163,11 +166,7 @@ export default function WatchDetails() {
         <div className="detail-section-heading">
           <div>
             <p className="detail-kicker">01 / THREE EXPRESSIONS</p>
-            <h2 id="portraits-title">
-              The face of
-              <br />
-              <em>time.</em>
-            </h2>
+            <KineticHeading id="portraits-title" text={'The face of\ntime.'} className="kinetic-gallery"/>
           </div>
           <p className="detail-lede">
             Gold-toned warmth. An olive chronograph. Steel and leather. Three
@@ -187,11 +186,7 @@ export default function WatchDetails() {
         <div className="detail-section-heading">
           <div>
             <p className="detail-kicker">02 / BENEATH THE DIAL</p>
-            <h2 id="movement-title">
-              A world
-              <br />
-              <em>within.</em>
-            </h2>
+            <KineticHeading id="movement-title" text={'A world\nwithin.'} className="kinetic-gallery"/>
           </div>
           <p className="detail-lede">
             Five close studies of the gear train, balance, hairspring and jewel
@@ -199,7 +194,8 @@ export default function WatchDetails() {
             cropping.
           </p>
         </div>
-        <div className="selected-movement-feature">{photo(3)}</div>
+        <MovementDiagram />
+        <div className="selected-movement-feature" data-image-reveal>{photo(3)}</div>
         <div className="detail-grid selected-movement-grid">
           {[4, 5, 6, 7].map((index) => photo(index))}
         </div>
@@ -249,7 +245,7 @@ export default function WatchDetails() {
               </div>
               <div className="lightbox-image">
                 <img
-                  src={`/watch-gallery/${item.id}.webp`}
+                  src={assetPath(`/watch-gallery/${item.id}.webp`)}
                   alt={item.alt}
                   width={item.width}
                   height={item.height}

@@ -1,6 +1,6 @@
 /* eslint-disable next/no-img-element -- Images are pre-optimized WebP assets for the static export. */
 'use client';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Search, X } from 'lucide-react';
 import {
   Dialog,
@@ -9,6 +9,8 @@ import {
   DialogDescription,
   DialogClose,
 } from './ui/dialog';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import catalog from '@/lib/catalog.json';
 export type Product = (typeof catalog)[number];
 export const currency = (value: number) =>
@@ -52,11 +54,27 @@ export default function CollectionExplorer({
     : filterProducts(catalog, category, query, sort);
   const categories = [
     ['all', 'All pieces'],
-    ['pre-owned', 'Pre-owned'],
+    ['pre-owned', 'Featured Timepieces'],
     ['micro-brand', 'Microbrands'],
-    ['straps', 'Straps'],
-    ['affordable-fine-jewelry', 'Fine jewelry'],
+    ['accessories', 'More to Explore'],
   ];
+  const grid = useRef<HTMLDivElement>(null);
+  const signature = shown.map(p => p.id).join(',');
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const media = gsap.matchMedia();
+    media.add('(prefers-reduced-motion: no-preference)', () => {
+      const cards = Array.from(grid.current!.querySelectorAll<HTMLElement>('.product-card'));
+      // Each row has its own range, so lower rows remain readable on tall grids.
+      const columns = innerWidth < 700 ? 1 : innerWidth < 1100 ? 2 : 3;
+      for (let i = 0; i < cards.length; i += columns) {
+        const row = cards.slice(i, i + columns);
+        gsap.fromTo(row, { y: 65, opacity: .1 }, { y: 0, opacity: 1, stagger: .14, ease: 'none',
+          scrollTrigger: { trigger: row[0], start: 'top 98%', end: 'top 62%', scrub: true } });
+      }
+    });
+    return () => media.revert();
+  }, [signature]);
   return (
     <div className="collection-explorer">
       {!preview && (
@@ -114,48 +132,24 @@ export default function CollectionExplorer({
           </p>
         </>
       )}
-      <div className="product-grid catalog-text-grid">
+      <div className="product-grid catalog-text-grid" ref={grid}>
         {shown.map((p, i) => (
-          <article
-            key={p.id}
-            className="product-card"
-            style={
-              {
-                '--item-delay': `${Math.min(i, 5) * 55}ms`,
-              } as React.CSSProperties
-            }
-          >
-            <button
-              className="catalog-inspect"
-              onClick={(e) => {
-                opener.current = e.currentTarget;
-                setSelected(p);
+          <article key={p.id} className="product-card">
+            <button className="catalog-inspect" type="button"
+              onPointerMove={event => {
+                if (!matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
+                const el = event.currentTarget, rect = el.getBoundingClientRect();
+                gsap.to(el, { '--tilt-x': `${-(event.clientY - rect.top - rect.height / 2) / rect.height * 9}deg`, '--tilt-y': `${(event.clientX - rect.left - rect.width / 2) / rect.width * 9}deg`, duration: .35, overwrite: true });
               }}
-              aria-label={`Inspect ${p.name} ${p.model}`}
-            >
-              <span className="catalog-reference">
-                <small>
-                  {categories.find(([id]) => id === p.category)?.[1]}
-                </small>
-                <strong>{p.name}</strong>
-                <span>{p.model || 'View listing details'}</span>
-              </span>
-              <span>
-                Listing details <span>↗</span>
-              </span>
+              onPointerLeave={event => gsap.to(event.currentTarget, { '--tilt-x': '0deg', '--tilt-y': '0deg', duration: .8, ease: 'elastic.out(1,.5)', overwrite: true })}
+              onClick={event => { opener.current = event.currentTarget; setSelected(p); }}
+              aria-label={`Inspect ${p.name} ${p.model}`}>
+              <span className="catalog-card-top"><small>{categories.find(([id]) => id === p.category)?.[1]}</small><span>{String(i + 1).padStart(2, '0')}</span></span>
+              <span className="catalog-reference"><strong>{p.name}</strong><span>{p.model || 'Selected by Grand Central Watch'}</span></span>
+              <span className="catalog-description">{p.description}</span>
+              <span className="catalog-card-bottom"><span className="catalog-price">{currency(p.price)}</span><span className="catalog-arrow" aria-hidden="true">↗</span></span>
+              <span className="catalog-inspect-label">INSPECT THE PIECE</span>
             </button>
-            <div className="product-meta">
-              <div>
-                <small>
-                  {categories.find(([id]) => id === p.category)?.[1]}
-                </small>
-                <h3>
-                  <a href={p.url}>{p.name}</a>
-                </h3>
-                <p>{p.model || 'Grand Central Watch selection'}</p>
-              </div>
-              <span>{currency(p.price)}</span>
-            </div>
           </article>
         ))}
       </div>
@@ -179,7 +173,7 @@ export default function CollectionExplorer({
         </div>
       )}
       <p className="catalog-note">
-        Featured selection recorded September 9, 2026. Prices are in USD.
+        Official listings verified September 28, 2026. Prices are in USD.
         Confirm current price, condition, and availability on the individual
         listing.
       </p>
@@ -213,11 +207,10 @@ export default function CollectionExplorer({
                 </DialogDescription>
                 <p className="product-price">{currency(selected.price)}</p>
                 <p>
-                  Explore the full listing for specifications, condition, and
-                  current availability.
+                  {selected.description} Explore the official listing for specifications and current availability.
                 </p>
                 <a className="solid-link" href={selected.url}>
-                  View & purchase <ArrowUpRight size={17} />
+                  View official listing <ArrowUpRight size={17} />
                 </a>
                 <small>Continue to centralwatch.com</small>
               </div>

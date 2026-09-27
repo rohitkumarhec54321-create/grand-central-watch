@@ -1,3 +1,4 @@
+import { assetPath } from '@/lib/paths';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
@@ -182,7 +183,7 @@ export async function createWatchStudio(
     renderer.forceContextLoss();
   };
   try {
-    const response = await fetch('/gc01/gc01.glb', { signal: options.signal });
+    const response = await fetch(assetPath('/gc01/gc01.glb'), { signal: options.signal });
     if (!response.ok) throw new Error('Watch model unavailable');
     const gltf = await new GLTFLoader().parseAsync(
       await response.arrayBuffer(),
@@ -214,26 +215,24 @@ export async function createWatchStudio(
   }));
   let progress = 0,
     compact = false;
-  function setFinish(finish: Finish) {
-    const metal =
-      finish === 'noir' ? '#393c40' : finish === 'gold' ? '#c3a06b' : '#b7bbbe';
-    const bright =
-      finish === 'noir' ? '#5b6065' : finish === 'gold' ? '#dec28d' : '#e0e2e3';
+  let transitionStart = 0;
+  let colorTargets: { material: THREE.MeshStandardMaterial; from: THREE.Color; to: THREE.Color }[] = [];
+  function setFinish(finish: Finish, animate = true) {
+    const metal = finish === 'noir' ? '#393c40' : finish === 'gold' ? '#c3a06b' : '#b7bbbe';
+    const bright = finish === 'noir' ? '#5b6065' : finish === 'gold' ? '#dec28d' : '#e0e2e3';
+    const palette: Record<string, string> = {
+      steel: metal, polished: finish === 'two-tone' ? '#cfb07a' : bright,
+      accent: finish === 'two-tone' ? '#c7a36a' : metal,
+      dial: finish === 'gold' ? '#37322c' : finish === 'noir' ? '#131619' : '#24282a',
+    };
+    transitionStart = performance.now();
+    colorTargets = [];
     for (const raw of materials) {
-      const mat = raw as THREE.MeshStandardMaterial;
-      if (mat.name === 'steel') mat.color.set(metal);
-      if (mat.name === 'polished')
-        mat.color.set(finish === 'two-tone' ? '#cfb07a' : bright);
-      if (mat.name === 'accent')
-        mat.color.set(finish === 'two-tone' ? '#c7a36a' : metal);
-      if (mat.name === 'dial')
-        mat.color.set(
-          finish === 'gold'
-            ? '#37322c'
-            : finish === 'noir'
-              ? '#131619'
-              : '#24282a',
-        );
+      const material = raw as THREE.MeshStandardMaterial;
+      if (!palette[material.name]) continue;
+      const to = new THREE.Color(palette[material.name]);
+      if (!animate) material.color.copy(to);
+      else colorTargets.push({ material, from: material.color.clone(), to });
     }
   }
   function resize(width: number, height: number) {
@@ -244,6 +243,12 @@ export async function createWatchStudio(
   }
   function render(time = 0, idle = true) {
     if (!model) return;
+    if (colorTargets.length) {
+      const t = Math.min(1, Math.max(0, (performance.now() - transitionStart) / 700));
+      const blend = t * t * (3 - 2 * t);
+      colorTargets.forEach(({material, from, to}) => material.color.copy(from).lerp(to, blend));
+      if (t === 1) colorTargets = [];
+    }
     const pose = samplePose(progress);
     const breathing = idle ? Math.sin(time * 0.00042) * 0.018 : 0;
     model.rotation.set(
@@ -266,7 +271,7 @@ export async function createWatchStudio(
     );
     renderer.render(scene, camera);
   }
-  setFinish('steel');
+  setFinish('steel', false);
   return {
     resize,
     render,

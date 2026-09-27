@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import InteractionMotion from './InteractionMotion';
 import 'lenis/dist/lenis.css';
 
 const SmoothScrollContext = createContext<Lenis | undefined>(undefined);
@@ -41,13 +42,13 @@ export default function EditorialMotion({children}:{children:React.ReactNode}) {
       const context = gsap.context(() => {
         gsap.from('.hero-copy > *', { y:24, autoAlpha:0, duration:1.1, stagger:.12, ease:'power2.out', clearProps:'all' });
         gsap.from('.hero-art', { autoAlpha:0, y:18, duration:1.6, delay:.12, ease:'power2.out', clearProps:'all' });
-        gsap.utils.toArray<HTMLElement>('[data-editorial-reveal], .detail-section-heading, .detail-subheading, .detail-end').forEach(element => {
-          gsap.from(element, { y:28, autoAlpha:0, duration:.9, ease:'power2.out', clearProps:'all', scrollTrigger:{ trigger:element, start:'top 94%', once:true } });
+        gsap.utils.toArray<HTMLElement>('[data-editorial-reveal], .detail-subheading, .detail-end').forEach(element => {
+          gsap.from(element, { y:36, opacity:.2, ease:'none', scrollTrigger:{ trigger:element, start:'top 98%', end:'top 70%', scrub:true } });
         });
         gsap.utils.toArray<HTMLElement>('[data-image-reveal]').forEach(element=>{
-          gsap.from(element,{clipPath:'inset(8% 0 8% 0)',duration:1.3,ease:'power2.out',clearProps:'clipPath',scrollTrigger:{trigger:element,start:'top 90%',once:true}});
+          gsap.from(element,{clipPath:'inset(8% 0 8% 0)',ease:'none',scrollTrigger:{trigger:element,start:'top 96%',end:'top 40%',scrub:true}});
           const img=element.querySelector('img');
-          if(img)gsap.fromTo(img,{scale:1.08},{scale:1,duration:1.7,ease:'power2.out',scrollTrigger:{trigger:element,start:'top 90%',once:true}});
+          if(img)gsap.fromTo(img,{scale:1.08},{scale:1,ease:'none',scrollTrigger:{trigger:element,start:'top 96%',end:'bottom 25%',scrub:true}});
         });
         gsap.utils.toArray<HTMLElement>('.arrival-steps li').forEach((element,i)=>gsap.from(element,{y:25,autoAlpha:0,duration:.8,delay:i*.09,clearProps:'all',scrollTrigger:{trigger:element,start:'top 93%',once:true}}));
         gsap.utils.toArray<HTMLElement>('.service-facts strong').forEach(element=>gsap.from(element,{y:16,autoAlpha:0,duration:1,clearProps:'all',scrollTrigger:{trigger:element,start:'top 93%',once:true}}));
@@ -57,5 +58,5 @@ export default function EditorialMotion({children}:{children:React.ReactNode}) {
     ScrollTrigger.refresh();
     return () => {media.revert();pageTrigger.kill();resize.disconnect();cancelAnimationFrame(refreshRaf)};
   }, [pathname]);
-  return <SmoothScrollContext.Provider value={scroll}>{children}<div className="global-scroll-track" aria-hidden="true"><div ref={progress}/></div></SmoothScrollContext.Provider>;
+  return <SmoothScrollContext.Provider value={scroll}>{children}<InteractionMotion/><div className="global-scroll-track" aria-hidden="true"><div ref={progress}/></div></SmoothScrollContext.Provider>;
 }

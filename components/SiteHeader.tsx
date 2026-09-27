@@ -1,4 +1,5 @@
 'use client';
+import { localHref } from '@/lib/paths';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRef, useState } from 'react';
@@ -124,8 +125,8 @@ export default function SiteHeader({ compact = false }: { compact?: boolean }) {
                 Service & restoration
               </Link>
               <Link
-                href="/collection"
-                aria-current={pathname === '/collection' ? 'page' : undefined}
+                href="/shop"
+                aria-current={pathname === '/shop' ? 'page' : undefined}
               >
                 The collection
               </Link>
@@ -267,7 +268,7 @@ export default function SiteHeader({ compact = false }: { compact?: boolean }) {
                 {results.map((item) => (
                   <a
                     key={`${item.url}:${item.title}`}
-                    href={item.url}
+                    href={localHref(item.url)}
                     onClick={() => setPanel(null)}
                   >
                     <span>

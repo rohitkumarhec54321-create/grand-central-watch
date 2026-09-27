@@ -1,3 +1,4 @@
+import { assetPath } from '@/lib/paths';
 /* eslint-disable next/no-img-element -- Images are pre-optimized WebP assets for the static export. */
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ export default function Story() {
       </PageIntro>
       <figure className="story-image image-reveal" data-image-reveal>
         <img
-          src="/watch-gallery/movement-balance.webp"
+          src={assetPath("/watch-gallery/movement-balance.webp")}
           alt="Conceptual macro illustration of a balance wheel and annotated mechanical movement"
           width={2048}
           height={2048}

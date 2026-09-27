@@ -1,3 +1,4 @@
+import { assetPath } from '@/lib/paths';
 /* eslint-disable next/no-img-element -- Images are pre-optimized WebP assets for the static export. */
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -36,7 +37,7 @@ export default function Services() {
       <section className="content-section service-introduction" id="expertise">
         <div className="image-reveal" data-image-reveal>
           <img
-            src="/watch-gallery/movement-architecture.webp"
+            src={assetPath("/watch-gallery/movement-architecture.webp")}
             alt="Conceptual illustration of a watch movement with labeled gears, escapement and balance wheel"
             width={2048}
             height={2048}

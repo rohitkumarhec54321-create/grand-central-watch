@@ -1,9 +1,14 @@
 'use client';
+import { assetPath } from '@/lib/paths';
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import SiteHeader from './SiteHeader';
 import WatchDetails from './WatchDetails';
+import KineticHeading from './KineticHeading';
+import ShopSection from './ShopSection';
+import HeritageService from './HeritageService';
+import FinishPreview from './FinishPreview';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { chapters, finishes, type Finish } from '@/lib/gc01/config';
@@ -19,6 +24,7 @@ export default function GC01Landing() {
   const film = useRef<HTMLElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const studio = useRef<Studio | null>(null);
+  const chapterLine = useRef<HTMLSpanElement>(null);
   const progressLine = useRef<HTMLSpanElement>(null);
   const progress = useRef(0);
   const currentChapter = useRef(0);
@@ -74,6 +80,9 @@ export default function GC01Landing() {
               0,
               chapters.findLastIndex((item) => value >= item.at),
             );
+      const start = presentation === 'mobile' ? mobileChapters.indexOf(next) / 4 : chapters[next].at;
+      const end = presentation === 'mobile' ? start + .25 : (chapters[next + 1]?.at ?? 1);
+      if (chapterLine.current) chapterLine.current.style.transform = `scaleX(${Math.min(1, Math.max(0, (value - start) / (end - start)))})`;
       if (next !== currentChapter.current) {
         currentChapter.current = next;
         setChapter(next);
@@ -198,7 +207,7 @@ export default function GC01Landing() {
     const next = mobileChapters[mobileChapters.indexOf(chapter) + 1];
     if (next === undefined) return;
     const img = new Image();
-    img.src = `/gc01/${chapters[next].image}.webp`;
+    img.src = assetPath(`/gc01/${chapters[next].image}.webp`);
   }, [chapter, presentation]);
 
   function goToChapter(index: number) {
@@ -259,7 +268,7 @@ export default function GC01Landing() {
           <div className="gc-floor" aria-hidden="true" />
           <img
             className={`gc-poster ${ready ? 'is-hidden' : ''}`}
-            src={`/gc01/${poster}.webp`}
+            src={assetPath(`/gc01/${poster}.webp`)}
             width="1200"
             height="1400"
             alt="GC—01 design study: a sculpted square case, charcoal dial, small seconds and articulated bracelet"
@@ -318,7 +327,7 @@ export default function GC01Landing() {
                   : 'SCROLL TO EXPLORE'}{' '}
               <span>{presentation === 'cinematic' && !ready ? '·' : '↓'}</span>
             </span>
-            <span>0{staticView ? 1 : chapter + 1} — 07</span>
+            <span className="gc-chapter-counter">0{staticView ? 1 : chapter + 1} — 07<span className="gc-chapter-progress" aria-hidden="true"><span ref={chapterLine}/></span></span>
           </div>
           <div className="gc-progress" aria-hidden="true">
             <span ref={progressLine} />
@@ -329,16 +338,14 @@ export default function GC01Landing() {
       <nav className="gc-section-links" aria-label="Explore this page">
         <a href="#finishes">Finishes</a>
         <a href="#collected-studies">Selected images</a>
+        <a href="#shop">Shop</a>
+        <a href="#heritage">Heritage</a>
         <Link href="/services">Watch care ↗</Link>
         <Link href="/visit">Visit the atelier ↗</Link>
       </nav>
       <section className="gc-introduction" aria-labelledby="gc-philosophy">
         <span className="gc-eyebrow">A NEW YORK POINT OF VIEW</span>
-        <h2 id="gc-philosophy">
-          Time, thoughtfully
-          <br />
-          <span>taken apart.</span>
-        </h2>
+        <KineticHeading id="gc-philosophy" text={'Time, thoughtfully\ntaken apart.'} className="kinetic-compact"/>
         <div>
           <p>
             GC—01 is an exploration of form, proportion and the quiet
@@ -356,16 +363,15 @@ export default function GC01Landing() {
         aria-labelledby="gc-finish-title"
       >
         <span className="gc-eyebrow">ONE FORM. FOUR EXPRESSIONS.</span>
-        <h2 id="gc-finish-title">
-          A matter of <em>character.</em>
-        </h2>
+        <KineticHeading id="gc-finish-title" text="A matter of character." className="kinetic-compact"/>
         <p className="gc-finish-instruction">
-          Choose a finish, then return to the film to see it on the watch.
+          Choose a finish. Watch the material change in the light.
         </p>
         <div className="gc-finish-display">
           <div className="gc-finish-word" aria-hidden="true">
             GC—01
           </div>
+          <FinishPreview finish={finish} />
           <div
             className="gc-finish-grid"
             role="group"
@@ -378,7 +384,11 @@ export default function GC01Landing() {
                 type="button"
                 aria-pressed={finish === item.id}
                 aria-label={`GC—01 ${item.name} finish`}
-                onClick={() => setFinish(item.id)}
+                onClick={(event) => {
+                  setFinish(item.id);
+                  if (!matchMedia('(prefers-reduced-motion: reduce)').matches)
+                    gsap.fromTo(event.currentTarget.querySelector('.gc-finish-swatch'), { scale: .78 }, { scale: 1, duration: .7, ease: 'elastic.out(1,.35)', overwrite: true });
+                }}
               >
                 <span
                   className="gc-finish-swatch"
@@ -445,6 +455,8 @@ export default function GC01Landing() {
       <div id="collected-studies">
         <WatchDetails />
       </div>
+      <ShopSection />
+      <HeritageService />
       <section className="gc-invitation">
         <span className="gc-eyebrow">CONTINUE THE CONVERSATION</span>
         <h2>
@@ -478,7 +490,7 @@ export default function GC01Landing() {
           <Link href="/client-care">Client care</Link>
         </nav>
         <div className="gc-footer-bottom">
-          <span>GC—01 is an original digital concept, not a retail model.</span>
+          <span>Unaffiliated portfolio concept. GC—01 is a digital study, not a retail model.</span>
           <a href="#watch-sequence">Back to the beginning ↑</a>
         </div>
       </footer>
